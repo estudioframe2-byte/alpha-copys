@@ -1,579 +1,383 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Prompts MKT - Alpha Builders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --primary: #4F46E5;
-            --primary-hover: #4338CA;
-            --bg-color: #F3F4F6;
-            --card-bg: #FFFFFF;
-            --text-main: #1F2937;
-            --text-muted: #6B7280;
-            --border: #E5E7EB;
-            --success: #10B981;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .app-container {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 600px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 650px;
-            margin: 20px;
-        }
-
-        .header {
-            padding: 24px;
-            border-bottom: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: var(--primary);
-        }
-
-        .header p {
-            margin: 8px 0 0 0;
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .progress-bar {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 40px;
-            background-color: #F9FAFB;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .step-indicator {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: var(--border);
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .step-indicator.active {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.2);
-        }
-
-        .step-indicator.completed {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .step-content {
-            padding: 32px;
-            flex-grow: 1;
-            display: none;
-            animation: fadeIn 0.4s;
-        }
-
-        .step-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h2 {
-            margin-top: 0;
-            font-size: 20px;
-            margin-bottom: 24px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        textarea,
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 15px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus,
-        textarea:focus,
-        select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .radio-group,
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 12px;
-        }
-
-        .checkbox-group.platforms {
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        }
-
-        .option-btn {
-            display: block;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .option-btn input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .option-content {
-            display: block;
-            padding: 10px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .option-btn:hover input~.option-content {
-            background-color: #F3F4F6;
-        }
-
-        .option-btn input:checked~.option-content {
-            border-color: var(--primary);
-            background-color: rgba(79, 70, 229, 0.05);
-            color: var(--primary);
-        }
-
-        .footer {
-            padding: 24px 32px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            background-color: #F9FAFB;
-        }
-
-        button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-prev {
-            background-color: white;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-        }
-
-        .btn-prev:hover {
-            background-color: #F3F4F6;
-        }
-
-        .btn-next,
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-next:hover,
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-success {
-            background-color: var(--success);
-            color: white;
-            width: 100%;
-            margin-bottom: 16px;
-        }
-
-        .btn-success:hover {
-            background-color: #059669;
-        }
-
-        .result-box {
-            background-color: #F9FAFB;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            font-family: monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            margin-bottom: 20px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-
-        .hidden {
-            display: none !important;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #818cf8; }
     </style>
 </head>
+<body class="bg-gradient-to-br from-slate-50 via-indigo-50/30 to-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
 
-<body>
-
-    <div class="app-container">
-        <div class="header">
-            <h1>Generador de Prompts MKT</h1>
-            <p>Crea el prompt perfecto para tu IA (Costo $0)</p>
+    <!-- Header Corporativo -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/80 py-6 text-center shadow-sm sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-xl shadow-md shadow-indigo-200">AB</div>
+                <div class="text-left">
+                    <h1 class="text-lg font-bold text-slate-900 leading-tight">Alpha Builders</h1>
+                    <p class="text-xs text-indigo-600 font-semibold tracking-wide">ASISTENTE COPYWRITER • COSTO $0</p>
+                </div>
+            </div>
+            <span class="text-xs px-3 py-1 bg-indigo-50 text-indigo-700 font-medium rounded-full border border-indigo-100 hidden sm:inline-block">Modo Producción Activo</span>
         </div>
+    </header>
 
-        <!-- Progress Bar -->
-        <div class="progress-bar" id="progressBar">
-            <div class="step-indicator active" id="ind-1">1</div>
-            <div class="step-indicator" id="ind-2">2</div>
-            <div class="step-indicator" id="ind-3">3</div>
-            <div class="step-indicator" id="ind-4">4</div>
-            <div class="step-indicator" id="ind-5">5</div>
-        </div>
-
-        <!-- Step 1: Contexto y Alcance -->
-        <div class="step-content active" id="step-1">
-            <h2>Paso 1: Contexto de la Campaña</h2>
-
-            <div class="form-group">
-                <label>¿Qué estamos promocionando?</label>
-                <div class="radio-group">
-                    <label class="option-btn">
-                        <input type="radio" name="contexto" value="Empresa" checked>
-                        <span class="option-content">Empresa</span>
-                    </label>
-                    <label class="option-btn">
-                        <input type="radio" name="contexto" value="Producto">
-                        <span class="option-content">Producto</span>
-                    </label>
-                    <label class="option-btn">
-                        <input type="radio" name="contexto" value="Evento">
-                        <span class="option-content">Evento</span>
-                    </label>
+    <!-- Main Container -->
+    <main class="max-w-3xl mx-auto w-full px-4 py-8 my-auto">
+        
+        <!-- Wizard Card -->
+        <div id="wizardContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-8 sm:p-10 transition-all duration-300">
+            
+            <!-- Progress Header & Steps -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-3">
+                    <span id="step-title-indicator" class="text-xs font-bold uppercase tracking-wider text-indigo-600">Paso 1 de 5</span>
+                    <span id="step-percentage" class="text-xs font-medium text-slate-400">20% Completado</span>
+                </div>
+                <div class="flex justify-between items-center relative">
+                    <div class="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 h-1.5 bg-slate-100 rounded-full z-0"></div>
+                    <div id="step-indicator-1" class="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm z-10 relative shadow-sm shadow-indigo-200 transition-all">1</div>
+                    <div id="step-indicator-2" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">2</div>
+                    <div id="step-indicator-3" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">3</div>
+                    <div id="step-indicator-4" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">4</div>
+                    <div id="step-indicator-5" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">5</div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Alcance / Región</label>
-                <div class="radio-group">
-                    <label class="option-btn">
-                        <input type="radio" name="region" value="Norte" checked>
-                        <span class="option-content">Norte</span>
-                    </label>
-                    <label class="option-btn">
-                        <input type="radio" name="region" value="Sur">
-                        <span class="option-content">Sur</span>
-                    </label>
-                    <label class="option-btn">
-                        <input type="radio" name="region" value="Medellín">
-                        <span class="option-content">Medellín</span>
-                    </label>
+            <!-- Form Wizard Steps -->
+            <form id="promptForm" class="space-y-6">
+
+                <!-- PASO 1: Contexto -->
+                <div class="step-content space-y-6" data-step="1">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Contexto de la Campaña</h2>
+                        <p class="text-sm text-slate-500 mt-1">Define los ejes principales del mensaje institucional y comercial.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué estamos promocionando?</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-center font-semibold text-sm transition-all border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm active-opt" data-group="promocionando" data-value="Empresa">🏢 Empresa</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-semibold text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="promocionando" data-value="Producto">📦 Producto</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-semibold text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="promocionando" data-value="Evento">🗓️ Evento</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Región de Enfoque y Tono Local</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-left sm:text-center transition-all border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm active-opt" data-group="region" data-value="Norte de Quito (República)">
+                                <div class="font-bold text-sm">Norte (Quito)</div>
+                                <div class="text-xs text-indigo-700 mt-0.5 opacity-80">Ejecutivo / AAA</div>
+                            </button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="region" data-value="Sur de Quito (La Magdalena)">
+                                <div class="font-bold text-sm">Sur (Quito)</div>
+                                <div class="text-xs text-slate-400 mt-0.5">Cálido / Tradicional</div>
+                            </button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="region" data-value="Medellín">
+                                <div class="font-bold text-sm">Medellín</div>
+                                <div class="text-xs text-slate-400 mt-0.5">Comercial / Dinámico</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 2: Canales y Formato -->
+                <div class="step-content space-y-6 hidden" data-step="2">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Canales y Formato de Salida</h2>
+                        <p class="text-sm text-slate-500 mt-1">Selecciona dónde se publicará y la estructura exacta requerida.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión (Selección múltiple)</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-medium text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-value="LinkedIn">💼 LinkedIn</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="WhatsApp">💬 WhatsApp</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="Instagram">📸 Instagram</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="Facebook">👥 Facebook</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="TikTok">⚡ TikTok</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-medium text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-value="Email">✉️ Email</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Formato de Salida Requerido</label>
+                        <select id="formatoOutput" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 font-medium text-slate-700 transition-all">
+                            <option value="Pauta publicitaria (Ad Copy)">Pauta publicitaria (Ad Copy) [Exige Copy, Headline y Descripción]</option>
+                            <option value="Invitación a Evento">Invitación a Evento [Estructura de fechas y beneficios]</option>
+                            <option value="Estrategia Inbound">Estrategia Inbound [Contenido de valor profundo]</option>
+                            <option value="Comunicación Interna">Comunicación Interna [Cultura y alineación corporativa]</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- PASO 3: Objetivo y Audiencia -->
+                <div class="step-content space-y-6 hidden" data-step="3">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Objetivo y Audiencia Meta</h2>
+                        <p class="text-sm text-slate-500 mt-1">Hacia quién nos dirigimos y qué esperamos lograr.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo Principal de la Campaña</label>
+                        <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 font-medium text-slate-700 transition-all">
+                            <option value="Generar Awareness (Reconocimiento de marca y posicionamiento)">Generar Awareness (Reconocimiento y posicionamiento)</option>
+                            <option value="Captación de Leads Calificados (Prospectos de alto valor)">Captación de Leads Calificados</option>
+                            <option value="Engagement y Comunidad (Interacción activa)">Engagement y Comunidad</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Descripción Detallada de la Audiencia</label>
+                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: Segmento exclusivo de Ecuador AAA (14% de la población), profesionales enfocados en patrimonio a largo plazo..."></textarea>
+                    </div>
+                </div>
+
+                <!-- PASO 4: Mensaje y Pain Points -->
+                <div class="step-content space-y-6 hidden" data-step="4">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Mensaje Clave y Puntos de Dolor</h2>
+                        <p class="text-sm text-slate-500 mt-1">Qué problema resolvemos o qué propuesta diferenciadora aportamos.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Desarrollo del Mensaje / Pain Points</label>
+                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: Inversión en bienes raíces con alta proyección de plusvalía, respaldo institucional de Alpha Builders y seguridad jurídica total..."></textarea>
+                    </div>
+                </div>
+
+                <!-- PASO 5: Reglas Estrictas -->
+                <div class="step-content space-y-6 hidden" data-step="5">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Restricciones y Políticas Editoriales</h2>
+                        <p class="text-sm text-slate-500 mt-1">Palabras prohibidas y normativas para evitar bloqueos en Meta o desalineación corporativa.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Palabras Negativas / Prohibidas (Evitar riesgos)</label>
+                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: barato, inversiones milagrosas, hoy mismo, rentabilidad fija exagerada, términos monopólicos..."></textarea>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-100">
+                <button type="button" id="prevBtn" class="px-6 py-3 rounded-2xl border-2 border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 hidden transition-all">Atrás</button>
+                <button type="button" id="nextBtn" class="ml-auto px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold text-sm hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all flex items-center gap-2">
+                    <span>Siguiente</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Output Section (Hidden initially) -->
+        <div id="outputContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-8 sm:p-10 hidden transition-all duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Tu Prompt Maestro</h3>
+                    <p class="text-sm text-slate-500 mt-0.5">Copia este texto y pégalo en tu IA de confianza (ChatGPT, Claude, Gemini).</p>
+                </div>
+                <span class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl border border-emerald-100">✨</span>
+            </div>
+            
+            <textarea id="resultPrompt" rows="10" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-xs text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
+            
+            <button type="button" id="copyBtn" class="w-full py-4 bg-emerald-600 text-white rounded-2xl font-bold text-sm hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 flex items-center justify-center gap-2 mb-8">
+                <span>📋 Copiar Prompt Completo</span>
+            </button>
+
+            <!-- Feedback & Iteration Panel -->
+            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-slate-800 mb-1">¿No te gustó el resultado de la IA? Ajusta el prompt:</label>
+                    <p class="text-xs text-slate-500">Escribe tus observaciones (ej. "está aburrido y no comprende el target", "hazlo más disruptivo").</p>
+                </div>
+                
+                <textarea id="feedbackInput" rows="3" class="w-full p-3.5 bg-white border border-slate-300 rounded-xl focus:border-indigo-600 focus:outline-none text-slate-700 text-sm shadow-sm transition-all placeholder:text-slate-400" placeholder="Escribe aquí tu retroalimentación..."></textarea>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                    <button type="button" id="regenerateBtn" class="py-3 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <span>🔄 Regenerar con Ajuste</span>
+                    </button>
+                    <button type="button" id="backToEditBtn" class="py-3 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <span>✏️ Volver a editar</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Step 2: Plataformas y Formato -->
-        <div class="step-content" id="step-2">
-            <h2>Paso 2: Canales y Formato</h2>
+    </main>
 
-            <div class="form-group">
-                <label>Plataformas (Puedes elegir varias)</label>
-                <div class="checkbox-group platforms">
-                    <label class="option-btn"><input type="checkbox" value="LinkedIn"><span
-                            class="option-content">LinkedIn</span></label>
-                    <label class="option-btn"><input type="checkbox" value="WhatsApp"><span
-                            class="option-content">WA</span></label>
-                    <label class="option-btn"><input type="checkbox" value="Instagram" checked><span
-                            class="option-content">Instagram</span></label>
-                    <label class="option-btn"><input type="checkbox" value="Facebook" checked><span
-                            class="option-content">Facebook</span></label>
-                    <label class="option-btn"><input type="checkbox" value="TikTok"><span
-                            class="option-content">TikTok</span></label>
-                    <label class="option-btn"><input type="checkbox" value="Email"><span
-                            class="option-content">Email</span></label>
-                    <label class="option-btn"><input type="checkbox" value="YouTube"><span
-                            class="option-content">YouTube</span></label>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-slate-400 font-medium">
+        Alpha Builders • Sistema Interno de Copywriting Profesional
+    </footer>
 
-            <div class="form-group">
-                <label>Formato del Copy</label>
-                <select id="formato">
-                    <option value="Pauta publicitaria (Ad Copy)">Pauta (Ad)</option>
-                    <option value="Copy general para post">Copy</option>
-                    <option value="Headline (Titular enganchador)">Headline</option>
-                    <option value="Descripción detallada">Descripción</option>
-                    <option value="Invitación">Invitación</option>
-                    <option value="Artículo de Blog">Blog</option>
-                    <option value="Comunicado Interno">Comunicación Interna</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Estrategia</label>
-                <div class="radio-group">
-                    <label class="option-btn"><input type="radio" name="estrategia" value="Inbound" checked><span
-                            class="option-content">Inbound</span></label>
-                    <label class="option-btn"><input type="radio" name="estrategia" value="Outbound"><span
-                            class="option-content">Outbound</span></label>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step 3: Objetivos y Público -->
-        <div class="step-content" id="step-3">
-            <h2>Paso 3: Objetivo y Audiencia</h2>
-
-            <div class="form-group">
-                <label>Objetivo Principal</label>
-                <select id="objetivo">
-                    <option value="Generar Awareness (Reconocimiento de marca)">Awareness</option>
-                    <option value="Generar Leads (Captura de clientes potenciales)">Leads</option>
-                    <option value="Generar Engagement (Interacción y comunidad)">Engagement</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Público Objetivo (¿A quién le hablamos?)</label>
-                <input type="text" id="publico" placeholder="Ej: Gerentes de marketing de 30 a 45 años...">
-            </div>
-        </div>
-
-        <!-- Step 4: Dolor y Puntos -->
-        <div class="step-content" id="step-4">
-            <h2>Paso 4: El Mensaje Principal</h2>
-
-            <div class="form-group">
-                <label>Puntos Importantes y Dolor del Cliente (Pain Points)</label>
-                <p style="font-size:12px; color:var(--text-muted); margin-top:-5px;">¿Qué problema resolvemos? ¿Qué
-                    debemos destacar sí o sí?</p>
-                <textarea id="dolor"
-                    placeholder="Ej: Tienen poco presupuesto pero necesitan resultados rápidos. Destacar que nuestra plataforma ahorra un 40% de tiempo en gestión..."></textarea>
-            </div>
-        </div>
-
-        <!-- Step 5: Palabras Negativas -->
-        <div class="step-content" id="step-5">
-            <h2>Paso 5: Reglas Estrictas</h2>
-
-            <div class="form-group">
-                <label>Palabras Negativas</label>
-                <p style="font-size:12px; color:var(--text-muted); margin-top:-5px;">Palabras prohibidas que la IA NO
-                    debe usar bajo ninguna circunstancia.</p>
-                <textarea id="palabrasNegativas"
-                    placeholder="Ej: 'barato', 'gratis', 'mágico', 'descubre', 'adéntrate'"></textarea>
-            </div>
-        </div>
-
-        <!-- Result View -->
-        <div class="step-content" id="step-result">
-            <h2>Tu Prompt Maestro</h2>
-            <p style="font-size:13px; margin-top:-10px; margin-bottom:15px;">Copia este texto y pégalo en ChatGPT,
-                Claude o Gemini.</p>
-
-            <div class="result-box" id="promptResult"></div>
-
-            <button class="btn-success" onclick="copyPrompt()" id="btnCopy">📋 Copiar Prompt Completo</button>
-
-            <div class="form-group" style="margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px;">
-                <label>¿No te gustó el resultado de la IA? Ajusta el prompt:</label>
-                <textarea id="comentariosAjuste"
-                    placeholder="Ej: Hazlo más corto y usa un tono más sarcástico..."></textarea>
-                <div style="display:flex; gap:10px; margin-top:10px;">
-                    <button class="btn-prev" onclick="addComment()" style="flex:1;">🔄 Regenerar con Ajuste</button>
-                    <button class="btn-prev" onclick="goToStep(5)" style="flex:1;">✏️ Volver a editar</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation Footer -->
-        <div class="footer" id="wizardFooter">
-            <button class="btn-prev" id="btnAtras" onclick="prevStep()" style="visibility: hidden;">Atrás</button>
-            <button class="btn-next" id="btnSiguiente" onclick="nextStep()">Siguiente</button>
-        </div>
-    </div>
-
+    <!-- Script de Funcionalidad e Interactividad -->
     <script>
         let currentStep = 1;
         const totalSteps = 5;
-        let basePrompt = "";
+        const formData = {
+            promocionando: 'Empresa',
+            region: 'Norte de Quito (República)'
+        };
 
-        function updateUI() {
-            // Update contents
-            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+        const stepTitles = [
+            "Paso 1: Contexto de la Campaña",
+            "Paso 2: Canales y Formato",
+            "Paso 3: Objetivo y Audiencia",
+            "Paso 4: Mensaje y Pain Points",
+            "Paso 5: Restricciones y Políticas"
+        ];
 
-            if (currentStep <= totalSteps) {
-                document.getElementById(`step-${currentStep}`).classList.add('active');
-                document.getElementById('wizardFooter').style.display = 'flex';
-                document.getElementById('progressBar').style.display = 'flex';
+        // Manejo de botones de opción única
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const group = btn.dataset.group;
+                document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
+                    b.classList.remove('border-indigo-600', 'bg-indigo-50/50', 'text-indigo-900', 'shadow-sm', 'active-opt');
+                    b.classList.add('border-slate-200', 'text-slate-600', 'bg-slate-50/50');
+                });
+                btn.classList.remove('border-slate-200', 'text-slate-600', 'bg-slate-50/50');
+                btn.classList.add('border-indigo-600', 'bg-indigo-50/50', 'text-indigo-900', 'shadow-sm', 'active-opt');
+                formData[group] = btn.dataset.value;
+            });
+        });
 
-                // Update indicators
-                for (let i = 1; i <= totalSteps; i++) {
-                    const ind = document.getElementById(`ind-${i}`);
-                    ind.classList.remove('active', 'completed');
-                    if (i === currentStep) ind.classList.add('active');
-                    if (i < currentStep) ind.classList.add('completed');
+        // Manejo de botones de selección múltiple (Plataformas)
+        document.querySelectorAll('.multi-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.toggle('border-indigo-600');
+                btn.classList.toggle('bg-indigo-50/50');
+                btn.classList.toggle('text-indigo-900');
+                btn.classList.toggle('active-multi');
+                btn.classList.toggle('border-slate-200');
+                btn.classList.toggle('text-slate-600');
+            });
+        });
+
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        function updateSteps() {
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.toggle('hidden', parseInt(el.dataset.step) !== currentStep);
+            });
+
+            for (let i = 1; i <= totalSteps; i++) {
+                const indicator = document.getElementById(`step-indicator-${i}`);
+                if (i <= currentStep) {
+                    indicator.classList.remove('bg-slate-100', 'text-slate-400');
+                    indicator.classList.add('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-200');
+                } else {
+                    indicator.classList.remove('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-200');
+                    indicator.classList.add('bg-slate-100', 'text-slate-400');
                 }
+            }
 
-                // Update buttons
-                document.getElementById('btnAtras').style.visibility = currentStep === 1 ? 'hidden' : 'visible';
-                document.getElementById('btnSiguiente').innerText = currentStep === totalSteps ? 'Generar Prompt' : 'Siguiente';
+            document.getElementById('step-title-indicator').textContent = stepTitles[currentStep - 1];
+            document.getElementById('step-percentage').textContent = `${Math.round((currentStep / totalSteps) * 100)}% Completado`;
+
+            prevBtn.classList.toggle('hidden', currentStep === 1);
+            
+            if (currentStep === totalSteps) {
+                nextBtn.innerHTML = `<span>Generar Prompt Maestro</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
             } else {
-                // Result step
-                document.getElementById('step-result').classList.add('active');
-                document.getElementById('wizardFooter').style.display = 'none';
-                document.getElementById('progressBar').style.display = 'none';
-                generatePrompt();
+                nextBtn.innerHTML = `<span>Siguiente</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>`;
             }
         }
 
-        function nextStep() {
-            if (currentStep <= totalSteps) {
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
                 currentStep++;
-                updateUI();
+                updateSteps();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                buildAndShowPrompt();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        }
+        });
 
-        function prevStep() {
+        prevBtn.addEventListener('click', () => {
             if (currentStep > 1) {
                 currentStep--;
-                updateUI();
+                updateSteps();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-        }
+        });
 
-        function goToStep(step) {
-            currentStep = step;
-            updateUI();
-        }
-
-        function getSelectedValues(name) {
-            const checked = document.querySelectorAll(`input[name="${name}"]:checked`);
-            if (checked.length > 0) return checked[0].value;
-            return "";
-        }
-
-        function getCheckedPlatforms() {
-            const checked = document.querySelectorAll('.platforms input:checked');
-            return Array.from(checked).map(cb => cb.value).join(', ');
-        }
-
-        function generatePrompt() {
-            const contexto = getSelectedValues('contexto');
-            const region = getSelectedValues('region');
-            const plataformas = getCheckedPlatforms() || 'las plataformas seleccionadas';
-            const formato = document.getElementById('formato').value;
-            const estrategia = getSelectedValues('estrategia');
+        function buildAndShowPrompt(extraFeedback = "") {
+            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim().replace(/^[^\w\s]+/, '').trim()).join(', ') || 'General';
+            const formato = document.getElementById('formatoOutput').value;
             const objetivo = document.getElementById('objetivo').value;
-            const publico = document.getElementById('publico').value || 'nuestra audiencia general';
-            const dolor = document.getElementById('dolor').value || 'los beneficios de nuestra oferta';
-            const negativas = document.getElementById('palabrasNegativas').value || 'Ninguna en particular, pero mantén un lenguaje natural.';
+            const audiencia = document.getElementById('audiencia').value || 'Público general interesado';
+            const painPoints = document.getElementById('painPoints').value || 'Propuesta de valor institucional';
+            const palabrasNegativas = document.getElementById('palabrasNegativas').value || 'Ninguna especificada';
 
-            basePrompt = `Actúa como un Copywriter Senior experto en marketing digital. Tu tarea es redactar un/una **${formato}** altamente persuasivo(a) para **${plataformas}**.
+            let estructuraExtra = "";
+            if (formato.includes("Pauta")) {
+                estructuraExtra = `
+- REQUISITO OBLIGATORIO DE SALIDA: Debes entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener separados y claros los siguientes 3 campos exactos:
+  1. Copy (Texto Principal): Altamente persuasivo y adaptado al canal.
+  2. Headline (Título): Corto, directo y de alto impacto.
+  3. Descripción: Respaldo institucional y de marca de Alpha Builders.`;
+            }
 
-Contexto del Proyecto:
-- Promocionamos un(a): ${contexto}
-- Región de enfoque: ${region}
-- Estrategia: ${estrategia}
-- Objetivo principal: ${objetivo}
-- Público Objetivo: ${publico}
+            let masterPrompt = `Actúa como un Copywriter Senior experto en marketing inmobiliario y corporativo para Alpha Builders. 
+Tu tarea es redactar contenido altamente persuasivo basándote estrictamente en los siguientes parámetros:
 
-Puntos Clave y Dolor del Cliente a resolver:
-${dolor}
+1. Promocionamos: ${formData.promocionando}
+2. Región de Enfoque y Tono Local: ${formData.region} (Norte: ejecutivo/aspiracional segmento AAA; Sur: cálido y de barrio tradicional; Medellín: comercial y dinámico).
+3. Canales de Difusión: ${plataformas}
+4. Formato de Salida Requerido: ${formato}
+5. Objetivo Principal: ${objetivo}
+6. Audiencia Meta: ${audiencia}
+7. Mensaje / Puntos de Dolor: ${painPoints}
+8. Palabras Negativas / Prohibidas (NO USAR BAJO NINGUNA CIRCUNSTANCIA): ${palabrasNegativas}. Evita promesas financieras exageradas y cuida las normativas y políticas editoriales.
+${estructuraExtra}`;
 
-🚨 REGLA ESTRICTA DE REDACCIÓN 🚨
-Bajo ninguna circunstancia puedes utilizar las siguientes palabras en tu texto:
-[ ${negativas} ]
+            if (extraFeedback) {
+                masterPrompt += `\n\n[AJUSTE CRÍTICO SOLICITUD DEL USUARIO]: ${extraFeedback}`;
+            }
 
-Instrucciones adicionales: Utiliza un tono atractivo, asegúrate de formatear el texto para una fácil lectura en las redes mencionadas (usa espaciado) e incluye emojis de manera estratégica y profesional.`;
-
-            document.getElementById('promptResult').innerText = basePrompt;
-            document.getElementById('comentariosAjuste').value = '';
+            document.getElementById('resultPrompt').value = masterPrompt;
+            document.getElementById('wizardContainer').classList.add('hidden');
+            document.getElementById('outputContainer').classList.remove('hidden');
         }
 
-        function addComment() {
-            const comment = document.getElementById('comentariosAjuste').value;
-            if (comment.trim() === '') return;
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            const copyText = document.getElementById('resultPrompt');
+            copyText.select();
+            navigator.clipboard.writeText(copyText.value);
+            alert('¡Prompt copiado al portapapeles con éxito!');
+        });
 
-            const newPrompt = basePrompt + `\n\n📌 AJUSTE O COMENTARIO ADICIONAL DEL CLIENTE:\n"${comment}"\nPor favor, regenera el copy aplicando este ajuste específico.`;
+        // Funcionalidad plenamente conectada para los botones de iteración
+        document.getElementById('backToEditBtn').addEventListener('click', () => {
+            document.getElementById('outputContainer').classList.add('hidden');
+            document.getElementById('wizardContainer').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-            document.getElementById('promptResult').innerText = newPrompt;
-        }
-
-        function copyPrompt() {
-            const text = document.getElementById('promptResult').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.getElementById('btnCopy');
-                const originalText = btn.innerText;
-                btn.innerText = '✅ ¡Copiado al portapapeles!';
-                btn.style.backgroundColor = '#059669';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.backgroundColor = 'var(--success)';
-                }, 2500);
-            });
-        }
-
-        // Initialize
-        updateUI();
+        document.getElementById('regenerateBtn').addEventListener('click', () => {
+            const feedback = document.getElementById('feedbackInput').value.trim();
+            if (!feedback) {
+                alert('Por favor escribe un ajuste en la caja de texto antes de regenerar.');
+                return;
+            }
+            buildAndShowPrompt(feedback);
+            document.getElementById('feedbackInput').value = '';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
-
 </html>
