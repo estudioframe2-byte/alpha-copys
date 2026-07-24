@@ -10,8 +10,6 @@
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
-        
-        /* Clases activas personalizadas en negro/gris oscuro */
         .active-opt { border-color: #0f172a !important; background-color: #f8fafc !important; color: #0f172a !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
         .active-multi { border-color: #0f172a !important; background-color: #f8fafc !important; color: #0f172a !important; }
     </style>
@@ -21,7 +19,8 @@
     <!-- Header Corporativo -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-6 text-center shadow-sm sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
+            <!-- LOGO CLICKABLE -->
+            <div id="homeBtn" class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" title="Volver al inicio para nueva campaña">
                 <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-xl shadow-md">AB</div>
                 <div class="text-left">
                     <h1 class="text-lg font-black text-slate-900 leading-tight tracking-tight">Alpha Builders</h1>
@@ -38,7 +37,6 @@
         <!-- Wizard Card -->
         <div id="wizardContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sm:p-10 transition-all duration-300">
             
-            <!-- Progress Header & Steps -->
             <div class="mb-8">
                 <div class="flex justify-between items-center mb-3">
                     <span id="step-title-indicator" class="text-xs font-black uppercase tracking-wider text-slate-900">Paso 1 de 5</span>
@@ -54,23 +52,20 @@
                 </div>
             </div>
 
-            <!-- Form Wizard Steps -->
             <form id="promptForm" class="space-y-6">
 
                 <!-- PASO 1: Contexto -->
                 <div class="step-content space-y-6" data-step="1">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Contexto de la Campaña</h2>
-                        <p class="text-sm text-slate-500 mt-1">¿Sobre qué pilar inmobiliario o corporativo vamos a comunicar?</p>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Proyecto / Enfoque</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Pixel">Pixel</button>
-                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Magnus">Magnus</button>
-                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Imagine">Imagine</button>
-                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all active-opt" data-group="promocionando" data-value="Institucional / Corporativo">Empresa</button>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué estamos promocionando?</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-900 bg-slate-50 text-slate-900 active-opt" data-group="promocionando" data-value="Empresa">🏢 Empresa</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Producto">📦 Producto</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Evento">🗓️ Evento</button>
                         </div>
                     </div>
 
@@ -114,9 +109,9 @@
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Estructura del Contenido</label>
                         <select id="formatoOutput" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
-                            <option value="Pauta publicitaria (Ad Copy)">Pauta publicitaria (Ad Copy) [Exige Copy, Headline y Descripción]</option>
+                            <option value="Pauta publicitaria">Pauta publicitaria (Ad Copy) [Exige Copy, Headline y Descripción]</option>
                             <option value="Post Orgánico">Post Orgánico [Educativo / Valor]</option>
-                            <option value="Artículo de Blog SEO">Artículo de Blog SEO [Estructura H1, H2, 200-500 palabras]</option>
+                            <option value="Blog SEO">Artículo de Blog SEO [Estructura H1, H2, 200-500 palabras]</option>
                             <option value="Comunicación Interna">Comunicación Interna [Cultura Corporativa]</option>
                         </select>
                     </div>
@@ -131,16 +126,16 @@
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo del Mensaje</label>
                         <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
-                            <option value="Vender estilo de vida, inversión y plusvalía">Impulsar Inversión y Plusvalía</option>
-                            <option value="Educar y generar confianza mediante procesos">Educación Inmobiliaria</option>
-                            <option value="Generar leads cualificados">Captación de Leads</option>
-                            <option value="Mostrar cultura organizacional e innovación">Posicionamiento Corporativo</option>
+                            <option value="Impulsar la inversión inmobiliaria, crecimiento patrimonial y plusvalía.">Impulsar Inversión y Plusvalía</option>
+                            <option value="Educar al usuario y generar confianza mediante evidencia visual y procesos.">Educación Inmobiliaria</option>
+                            <option value="Generar leads cualificados para el equipo comercial.">Captación de Leads</option>
+                            <option value="Mostrar la cultura organizacional, liderazgo e innovación (Employer Branding).">Posicionamiento Corporativo</option>
                         </select>
                     </div>
 
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Audiencia Meta</label>
-                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Profesionales buscando crecimiento patrimonial, interesados en rentas temporales (Airbnb)..."></textarea>
+                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Profesionales jóvenes interesados en su primera inversión, segmento exclusivo AAA, etc."></textarea>
                     </div>
                 </div>
 
@@ -151,8 +146,8 @@
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué vamos a destacar? (Beneficios, ubicación, amenities)</label>
-                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: 17 minutos al centro financiero, financiamiento directo, diseño arquitectónico..."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué vamos a destacar? (Si aplica a un proyecto como Pixel o Magnus, menciónalo aquí)</label>
+                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Proyecto Pixel (La Magdalena, a 17 min del centro financiero, ideal para rentas temporales Airbnb)."></textarea>
                     </div>
                 </div>
 
@@ -160,18 +155,16 @@
                 <div class="step-content space-y-6 hidden" data-step="5">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Filtros Adicionales</h2>
-                        <p class="text-sm text-slate-500 mt-1">El sistema ya bloquea clichés por defecto. Añade aquí palabras específicas a evitar en esta campaña.</p>
                     </div>
                     
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Palabras Adicionales a Evitar</label>
-                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: retrasos, fases, competencia..."></textarea>
+                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: barato, inversiones milagrosas, retrasos de obra..."></textarea>
                     </div>
                 </div>
 
             </form>
 
-            <!-- Navigation Buttons -->
             <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-200">
                 <button type="button" id="prevBtn" class="px-6 py-3.5 rounded-2xl border-2 border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 hidden transition-all">Atrás</button>
                 <button type="button" id="nextBtn" class="ml-auto px-8 py-3.5 rounded-2xl bg-slate-900 text-white font-bold text-sm hover:bg-black shadow-lg shadow-slate-300 transition-all flex items-center gap-2">
@@ -182,7 +175,7 @@
 
         </div>
 
-        <!-- Output Section (Hidden initially) -->
+        <!-- Output Section -->
         <div id="outputContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sm:p-10 hidden transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div>
@@ -191,7 +184,7 @@
                 </div>
             </div>
             
-            <textarea id="resultPrompt" rows="10" class="w-full p-5 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-sm text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
+            <textarea id="resultPrompt" rows="15" class="w-full p-5 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-sm text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
             
             <button type="button" id="copyBtn" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-black transition-all shadow-lg shadow-slate-300 flex items-center justify-center gap-2 mb-8">
                 <span>📋 Copiar Instrucción</span>
@@ -200,18 +193,18 @@
             <!-- Feedback & Iteration Panel -->
             <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4">
                 <div>
-                    <label class="block text-sm font-black text-slate-900 mb-1">¿Ajustar el resultado?</label>
-                    <p class="text-xs text-slate-500 font-medium">Ej: "Hazlo más corto", "Enfócate más en la plusvalía".</p>
+                    <label class="block text-sm font-black text-slate-900 mb-1">¿La IA no te dio el resultado esperado?</label>
+                    <p class="text-xs text-slate-500 font-medium">Agrega correcciones aquí y generaremos un nuevo prompt más estricto priorizando tus ajustes.</p>
                 </div>
                 
-                <textarea id="feedbackInput" rows="3" class="w-full p-4 bg-white border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:outline-none text-slate-700 font-medium text-sm transition-all placeholder:text-slate-400" placeholder="Escribe aquí tu ajuste..."></textarea>
+                <textarea id="feedbackInput" rows="3" class="w-full p-4 bg-white border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:outline-none text-slate-700 font-medium text-sm transition-all placeholder:text-slate-400" placeholder="Ej: Hazlo más corto, cambia el tono, no uses emojis..."></textarea>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                     <button type="button" id="regenerateBtn" class="py-3.5 px-4 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-black transition-all flex items-center justify-center gap-2 shadow-md">
-                        <span>🔄 Aplicar Ajuste</span>
+                        <span>🔄 Agregar Ajuste al Prompt</span>
                     </button>
                     <button type="button" id="backToEditBtn" class="py-3.5 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                        <span>✏️ Editar Formulario</span>
+                        <span>✏️ Editar Formulario Inicial</span>
                     </button>
                 </div>
             </div>
@@ -219,12 +212,13 @@
 
     </main>
 
-    <!-- Script de Funcionalidad e Interactividad -->
     <script>
         let currentStep = 1;
         const totalSteps = 5;
+        let feedbackHistory = [];
+
         const formData = {
-            promocionando: 'Institucional / Corporativo',
+            promocionando: 'Empresa',
             region: 'Norte de Quito (República)'
         };
 
@@ -236,11 +230,18 @@
             "Paso 5: Filtros Adicionales"
         ];
 
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            location.reload();
+        });
+
         document.querySelectorAll('.option-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const group = btn.dataset.group;
                 document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
                     b.classList.remove('border-slate-900', 'bg-slate-50', 'text-slate-900', 'active-opt');
+                    if(b.textContent.includes('Empresa') || b.textContent.includes('Producto') || b.textContent.includes('Evento')) {
+                        b.classList.remove('bg-slate-50', 'text-slate-900');
+                    }
                     b.classList.add('border-slate-200', 'text-slate-500');
                 });
                 btn.classList.remove('border-slate-200', 'text-slate-500');
@@ -297,6 +298,7 @@
                 updateSteps();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
+                feedbackHistory = []; 
                 buildAndShowPrompt();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -310,47 +312,63 @@
             }
         });
 
-        function buildAndShowPrompt(extraFeedback = "") {
-            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim()).join(', ') || 'General';
+        function buildAndShowPrompt() {
+            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim().replace(/^[^\w\s]+/, '').trim()).join(', ') || 'General';
             const formato = document.getElementById('formatoOutput').value;
             const objetivo = document.getElementById('objetivo').value;
             const audiencia = document.getElementById('audiencia').value || 'Público corporativo e inversionistas';
             const painPoints = document.getElementById('painPoints').value || 'Desarrollo urbano y crecimiento patrimonial';
             const palabrasNegativasAdicionales = document.getElementById('palabrasNegativas').value || 'Ninguna adicional';
 
-            // REGLAS DINÁMICAS BASADAS EN EL MANUAL DE MARCA
             let reglasCanal = "";
-            if (plataformas.includes("Instagram")) reglasCanal += "\n- INSTAGRAM: Estructura obligatoria (Hook, Desarrollo, Valor, CTA corto, Hashtags). Máximo dos párrafos largos.";
-            if (plataformas.includes("LinkedIn")) reglasCanal += "\n- LINKEDIN: Tono netamente institucional, hablar de procesos, innovación y cultura. Cero tono comercial.";
-            if (plataformas.includes("WhatsApp")) reglasCanal += "\n- WHATSAPP: Texto muy corto, directo, conversacional y con emojis medidos.";
-            if (formato.includes("Blog SEO") || plataformas.includes("Blog SEO")) reglasCanal += "\n- BLOG SEO: Estructura estricta H1 (con Keyword), H2, H3. Párrafos de 3-5 líneas. Extensión 200-500 palabras. Cierre institucional conectando con la visión de Alpha Builders. Optimizado para lectura (Rank Math/Yoast verde).";
-
-            let estructuraExtra = "";
-            if (formato.includes("Pauta")) {
-                estructuraExtra = `\n- REQUISITO OBLIGATORIO DE SALIDA: Debes entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener: Copy (Principal), Headline (Título corto) y Descripción.`;
+            if (plataformas.includes("Instagram")) reglasCanal += "\n   - Instagram: Debe incluir Hook, Desarrollo, Valor, CTA corto y Hashtags. NUNCA más de dos párrafos largos.";
+            if (plataformas.includes("LinkedIn")) reglasCanal += "\n   - LinkedIn: Tono estrictamente institucional. Hablar de procesos, equipos, innovación, cultura y liderazgo. CERO tono comercial.";
+            if (plataformas.includes("WhatsApp")) reglasCanal += "\n   - WhatsApp: Muy corto, directo, conversacional y con emojis controlados.";
+            
+            let formatoExtendido = "";
+            if (formato === "Pauta publicitaria") {
+                formatoExtendido = "\n- FORMATO REQUERIDO (PAUTA): Tienes que entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe estar separada y contener explícitamente: [1] Copy principal, [2] Headline (Título corto) y [3] Descripción.";
+            } else if (formato === "Blog SEO" || plataformas.includes("Blog SEO")) {
+                formatoExtendido = `\n- FORMATO REQUERIDO (BLOG SEO):
+   - Extensión: 200 a 500 palabras.
+   - Estructura obligatoria: Un H1 natural con la keyword principal, un párrafo introductorio que responda la intención de búsqueda, al menos un H2 y H3.
+   - Párrafos cortos de 3 a 5 líneas. Mucho aire visual. Voz activa.
+   - Cierre: Párrafo institucional sobre Alpha Builders (compromiso con innovación, calidad, etc.) sin sonar comercial.`;
             }
 
-            let masterPrompt = `Actúa como un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario, especializado en la industria inmobiliaria de Ecuador. Tu objetivo es educar, generar confianza y posicionar la marca.
+            let masterPrompt = "";
 
-REGLAS DE ORO DEL MANUAL DE MARCA:
-- Tono: Profesional, moderno, elegante, premium y educativo. NUNCA exagerado, arrogante o como "vendedor insistente".
-- Filosofía: No vendemos departamentos. Vendemos estilo de vida, inversión, plusvalía y desarrollo urbano.
-- PALABRAS Y FRASES PROHIBIDAS BAJO TODA CIRCUNSTANCIA: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora", "La empresa más confiable", "garantizamos", "100%", "seguro", "perfecto". Nunca justificar ni responder ataques.
-- CTA: Siempre terminar con un llamado a la acción no agresivo (ej. "Agenda tu asesoría", "Conoce más").
-
-PARÁMETROS DE ESTA SOLICITUD:
-1. Proyecto/Enfoque: ${formData.promocionando}
-2. Región: ${formData.region}
-3. Canales: ${plataformas} ${reglasCanal}
-4. Formato: ${formato} ${estructuraExtra}
-5. Objetivo: ${objetivo}
-6. Audiencia Meta: ${audiencia}
-7. Desarrollo del Mensaje: ${painPoints}
-8. Filtros Adicionales (Tampoco usar estas palabras): ${palabrasNegativasAdicionales}`;
-
-            if (extraFeedback) {
-                masterPrompt += `\n\n[IMPORTANTE - AJUSTE DEL USUARIO]: ${extraFeedback}`;
+            if (feedbackHistory.length > 0) {
+                masterPrompt += `[⚠️ INSTRUCCIONES DE CORRECCIÓN - PRIORIDAD MÁXIMA ⚠️]\nAplica ESTRICTAMENTE estos ajustes al texto que estabas generando previamente:\n${feedbackHistory.map((f, i) => `${i+1}. ${f}`).join('\n')}\n\n------------------------------------------------------------\n\n`;
             }
+
+            masterPrompt += `Eres un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario de la empresa Alpha Builders, especializado en la industria inmobiliaria de Ecuador. Tu objetivo fundamental es educar, generar confianza y posicionar la marca a través de contenido de altísimo valor.
+
+1. CONTEXTO DE NEGOCIO Y FILOSOFÍA:
+- No vendemos ladrillos ni departamentos. Vendemos estilo de vida, inversión inteligente, plusvalía, crecimiento patrimonial y desarrollo urbano.
+- El contenido debe hacer sentir al usuario que comprar un inmueble con Alpha Builders es la decisión financiera más inteligente.
+
+2. TONO DE COMUNICACIÓN:
+- Profesional, moderno, elegante, premium, educativo e inspirador.
+- NUNCA exagerado. NUNCA arrogante. NUNCA sonar como un vendedor insistente o tradicional.
+- Escribe con frases cortas y claras. Evita el lenguaje robótico o excesivamente técnico.
+
+3. LO QUE ESTÁ ESTRICTAMENTE PROHIBIDO (NO USAR BAJO NINGUNA CIRCUNSTANCIA):
+- Clichés: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora", "La empresa más confiable".
+- Promesas absolutas: "garantizamos", "100%", "seguro", "perfecto".
+- Si se habla de la empresa: No responder ataques, no justificar, no discutir. Siempre comunica desde el valor.
+- Palabras adicionales prohibidas para esta campaña: ${palabrasNegativasAdicionales}
+
+4. PARÁMETROS ESPECÍFICOS DE ESTA CAMPAÑA:
+- Categoría de Promoción: ${formData.promocionando}
+- Región de Enfoque: ${formData.region}
+- Objetivo Principal: ${objetivo}
+- Audiencia Meta: ${audiencia}
+- Información Clave a Destacar: ${painPoints} (Nota: Si se menciona Pixel, enfatizar ubicación estratégica, metro y plusvalía; si es Magnus, vista e inversión premium; si es Imagine, exclusividad y amenities).
+
+5. REGLAS DE PLATAFORMA Y FORMATO DE SALIDA:
+- Plataformas destino: ${plataformas}${reglasCanal}${formatoExtendido}
+- Call To Action (CTA): Termina siempre con un CTA claro y no agresivo (ej: Agenda tu asesoría, Descubre más, Escríbenos).`;
 
             document.getElementById('resultPrompt').value = masterPrompt;
             document.getElementById('wizardContainer').classList.add('hidden');
@@ -361,7 +379,18 @@ PARÁMETROS DE ESTA SOLICITUD:
             const copyText = document.getElementById('resultPrompt');
             copyText.select();
             navigator.clipboard.writeText(copyText.value);
-            alert('¡Instrucción copiada al portapapeles!');
+            
+            const btn = document.getElementById('copyBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span>✅ ¡Copiado con éxito!</span>';
+            btn.classList.remove('bg-slate-900', 'hover:bg-black');
+            btn.classList.add('bg-green-600', 'hover:bg-green-700');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.add('bg-slate-900', 'hover:bg-black');
+                btn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            }, 2500);
         });
 
         document.getElementById('backToEditBtn').addEventListener('click', () => {
@@ -373,10 +402,11 @@ PARÁMETROS DE ESTA SOLICITUD:
         document.getElementById('regenerateBtn').addEventListener('click', () => {
             const feedback = document.getElementById('feedbackInput').value.trim();
             if (!feedback) {
-                alert('Escribe un ajuste antes de regenerar.');
+                alert('Escribe un ajuste antes de agregarlo al prompt.');
                 return;
             }
-            buildAndShowPrompt(feedback);
+            feedbackHistory.push(feedback);
+            buildAndShowPrompt();
             document.getElementById('feedbackInput').value = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
