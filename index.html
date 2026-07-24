@@ -126,10 +126,10 @@
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Estructura del Contenido</label>
                         <select id="formatoOutput" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
-                            <option value="Pauta publicitaria">Pauta publicitaria (Ad Copy) [Exige Copy, Headline y Descripción]</option>
-                            <option value="Post Orgánico">Post Orgánico [Educativo / Valor]</option>
+                            <option value="Pauta publicitaria">Pauta publicitaria (Ad Copy) [Generará 3 opciones]</option>
+                            <option value="Post Orgánico">Post Orgánico (Educativo / Valor) [Generará 3 opciones]</option>
                             <option value="Blog SEO">Artículo de Blog SEO [Estructura H1, H2, 200-500 palabras]</option>
-                            <option value="Comunicación Interna">Comunicación Interna [Cultura Corporativa]</option>
+                            <option value="Comunicación Interna">Comunicación Interna [Generará 3 opciones]</option>
                         </select>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
         // Estado inicial
         const formData = {
             categoria: 'Empresa',
-            proyecto: 'Pixel', // Valor por defecto en caso de abrir submenú
+            proyecto: 'Pixel', 
             region: 'Norte de Quito (República)'
         };
 
@@ -241,7 +241,6 @@
         // LÓGICA CATEGORÍA PRINCIPAL (Empresa, Producto, Evento)
         document.querySelectorAll('.btn-categoria').forEach(btn => {
             btn.addEventListener('click', () => {
-                // Actualizar UI botones categoría
                 document.querySelectorAll('.btn-categoria').forEach(b => {
                     b.classList.remove('border-slate-900', 'bg-slate-50', 'text-slate-900', 'active-opt');
                     b.classList.add('border-slate-200', 'text-slate-500');
@@ -379,6 +378,7 @@
             if (plataformas.includes("LinkedIn")) reglasCanal += "\n   - LinkedIn: Tono estrictamente institucional. Hablar de procesos, equipos, innovación y cultura. Cero tono comercial.";
             if (plataformas.includes("WhatsApp")) reglasCanal += "\n   - WhatsApp: Muy corto, directo, conversacional y con emojis medidos.";
             
+            // EXIGENCIA OBLIGATORIA DE 3 OPCIONES PARA TODOS LOS FORMATOS SOCIALES/PAUTA
             let formatoExtendido = "";
             if (formato === "Pauta publicitaria") {
                 formatoExtendido = "\n- FORMATO REQUERIDO (PAUTA): Tienes que entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener explícitamente: [1] Copy principal, [2] Headline (Título corto) y [3] Descripción.";
@@ -388,6 +388,8 @@
    - Estructura obligatoria: Un H1 natural con la keyword principal, un párrafo introductorio que responda la intención de búsqueda, al menos un H2 y H3.
    - Párrafos cortos de 3 a 5 líneas. Mucho aire visual. Voz activa.
    - Cierre: Párrafo institucional sobre Alpha Builders (compromiso con innovación, calidad, etc.) sin sonar comercial.`;
+            } else {
+                formatoExtendido = "\n- FORMATO REQUERIDO: Tienes que entregar exactamente 3 OPCIONES DIFERENTES de redacción para que el equipo tenga variedad y pueda elegir la que mejor se adapte.";
             }
 
             let masterPrompt = `Eres un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario de la empresa Alpha Builders, especializado en la industria inmobiliaria de Ecuador. Tu objetivo fundamental es educar, generar confianza y posicionar la marca.
