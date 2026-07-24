@@ -19,15 +19,14 @@
     <!-- Header Corporativo -->
     <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-6 text-center shadow-sm sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
-            <!-- LOGO CLICKABLE -->
-            <div id="homeBtn" class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" title="Volver al inicio para nueva campaña">
+            <div id="homeBtn" class="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" title="Reiniciar herramienta">
                 <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-xl shadow-md">AB</div>
                 <div class="text-left">
                     <h1 class="text-lg font-black text-slate-900 leading-tight tracking-tight">Alpha Builders</h1>
                     <p class="text-xs text-slate-500 font-bold tracking-widest uppercase mt-0.5">Asistente Copywriter</p>
                 </div>
             </div>
-            <span class="text-xs px-3 py-1 bg-slate-100 text-slate-600 font-bold rounded-full border border-slate-200 hidden sm:inline-block tracking-wide">COSTO $0</span>
+            <span class="text-xs px-3 py-1 bg-slate-100 text-slate-600 font-bold rounded-full border border-slate-200 hidden sm:inline-block tracking-wide">V3.0 ESTABLE</span>
         </div>
     </header>
 
@@ -39,8 +38,8 @@
             
             <div class="mb-8">
                 <div class="flex justify-between items-center mb-3">
-                    <span id="step-title-indicator" class="text-xs font-black uppercase tracking-wider text-slate-900">Paso 1 de 5</span>
-                    <span id="step-percentage" class="text-xs font-bold text-slate-400">20% Completado</span>
+                    <span id="step-title-indicator" class="text-xs font-black uppercase tracking-wider text-slate-900">Paso 1 de 4</span>
+                    <span id="step-percentage" class="text-xs font-bold text-slate-400">25% Completado</span>
                 </div>
                 <div class="flex justify-between items-center relative">
                     <div class="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 h-1.5 bg-slate-100 rounded-full z-0"></div>
@@ -48,42 +47,26 @@
                     <div id="step-indicator-2" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">2</div>
                     <div id="step-indicator-3" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">3</div>
                     <div id="step-indicator-4" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">4</div>
-                    <div id="step-indicator-5" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">5</div>
                 </div>
             </div>
 
             <form id="promptForm" class="space-y-6">
 
-                <!-- PASO 1: Contexto -->
+                <!-- PASO 1: Contexto de Proyecto -->
                 <div class="step-content space-y-6" data-step="1">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Contexto de la Campaña</h2>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Eje de Campaña</h2>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué estamos promocionando?</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-900 bg-slate-50 text-slate-900 active-opt" data-group="promocionando" data-value="Empresa">🏢 Empresa</button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Producto">📦 Producto</button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Evento">🗓️ Evento</button>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Región de Enfoque</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-left sm:text-center transition-all active-opt" data-group="region" data-value="Norte de Quito (República)">
-                                <div class="font-bold text-sm">Norte (Quito)</div>
-                                <div class="text-xs mt-0.5 opacity-80">Ejecutivo / AAA</div>
-                            </button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-500" data-group="region" data-value="Sur de Quito (La Magdalena)">
-                                <div class="font-bold text-sm">Sur (Quito)</div>
-                                <div class="text-xs mt-0.5">Tradicional</div>
-                            </button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-500" data-group="region" data-value="Medellín">
-                                <div class="font-bold text-sm">Medellín</div>
-                                <div class="text-xs mt-0.5">Comercial</div>
-                            </button>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Sobre qué vamos a hablar hoy?</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-900 bg-slate-50 text-slate-900 active-opt" data-group="promocionando" data-value="Empresa (Corporativo)">🏢 Corporativo</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Pixel">🏢 Pixel</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Magnus">🏢 Magnus</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Imagine">🏢 Imagine</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Proyectos en Desarrollo (Smart, Rubik, Musk, Dablanc)">🏗️ En Construcción</button>
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-group="promocionando" data-value="Evento Inmobiliario">🗓️ Evento</button>
                         </div>
                     </div>
                 </div>
@@ -95,13 +78,12 @@
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión (Selección múltiple)</label>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                             <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="LinkedIn">LinkedIn</button>
                             <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="WhatsApp">WhatsApp</button>
                             <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Instagram">Instagram</button>
                             <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Facebook">Facebook</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="TikTok">TikTok</button>
                             <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="Blog SEO">Blog SEO</button>
                         </div>
                     </div>
@@ -120,46 +102,39 @@
                 <!-- PASO 3: Objetivo y Audiencia -->
                 <div class="step-content space-y-6 hidden" data-step="3">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Estrategia Inmobiliaria</h2>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Estrategia y Audiencia</h2>
                     </div>
                     
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo del Mensaje</label>
                         <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
-                            <option value="Impulsar la inversión inmobiliaria, crecimiento patrimonial y plusvalía.">Impulsar Inversión y Plusvalía</option>
-                            <option value="Educar al usuario y generar confianza mediante evidencia visual y procesos.">Educación Inmobiliaria</option>
-                            <option value="Generar leads cualificados para el equipo comercial.">Captación de Leads</option>
-                            <option value="Mostrar la cultura organizacional, liderazgo e innovación (Employer Branding).">Posicionamiento Corporativo</option>
+                            <option value="Impulsar la inversión inmobiliaria y plusvalía.">Impulsar Inversión y Plusvalía</option>
+                            <option value="Educar al usuario y generar confianza.">Educación Inmobiliaria</option>
+                            <option value="Generar leads cualificados para ventas.">Captación de Leads</option>
+                            <option value="Mostrar la cultura organizacional y liderazgo.">Posicionamiento Corporativo</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Audiencia Meta</label>
-                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Profesionales jóvenes interesados en su primera inversión, segmento exclusivo AAA, etc."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Público Objetivo</label>
+                        <textarea id="audiencia" rows="2" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Inversionistas buscando Airbnb, ejecutivos AAA..."></textarea>
                     </div>
                 </div>
 
-                <!-- PASO 4: Mensaje y Pain Points -->
+                <!-- PASO 4: Ángulo Libre y Restricciones -->
                 <div class="step-content space-y-6 hidden" data-step="4">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Ángulo Creativo</h2>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Toque Final</h2>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué vamos a destacar? (Si aplica a un proyecto como Pixel o Magnus, menciónalo aquí)</label>
-                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Proyecto Pixel (La Magdalena, a 17 min del centro financiero, ideal para rentas temporales Airbnb)."></textarea>
-                    </div>
-                </div>
-
-                <!-- PASO 5: Reglas Estrictas -->
-                <div class="step-content space-y-6 hidden" data-step="5">
-                    <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Filtros Adicionales</h2>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Puntos clave a destacar (Beneficio extra, promoción temporal)</label>
+                        <textarea id="painPoints" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Mencionar el crédito directo sin intereses, o la cercanía a colegios..."></textarea>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Palabras Adicionales a Evitar</label>
-                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: barato, inversiones milagrosas, retrasos de obra..."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Palabras PROHIBIDAS (Aparte de los clichés de marca)</label>
+                        <textarea id="palabrasNegativas" rows="2" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: barato, descuentos, competencia..."></textarea>
                     </div>
                 </div>
 
@@ -179,34 +154,20 @@
         <div id="outputContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sm:p-10 hidden transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Instrucción Maestra Generada</h3>
-                    <p class="text-sm text-slate-500 mt-0.5 font-medium">Copia y pega este texto en tu IA.</p>
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Instrucción Maestra Lista</h3>
+                    <p class="text-sm text-slate-500 mt-0.5 font-medium">Copia y pega este prompt en tu herramienta de IA.</p>
                 </div>
             </div>
             
-            <textarea id="resultPrompt" rows="15" class="w-full p-5 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-sm text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
+            <textarea id="resultPrompt" rows="16" class="w-full p-5 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-sm text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
             
-            <button type="button" id="copyBtn" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-black transition-all shadow-lg shadow-slate-300 flex items-center justify-center gap-2 mb-8">
-                <span>📋 Copiar Instrucción</span>
-            </button>
-
-            <!-- Feedback & Iteration Panel -->
-            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4">
-                <div>
-                    <label class="block text-sm font-black text-slate-900 mb-1">¿La IA no te dio el resultado esperado?</label>
-                    <p class="text-xs text-slate-500 font-medium">Agrega correcciones aquí y generaremos un nuevo prompt más estricto priorizando tus ajustes.</p>
-                </div>
-                
-                <textarea id="feedbackInput" rows="3" class="w-full p-4 bg-white border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:outline-none text-slate-700 font-medium text-sm transition-all placeholder:text-slate-400" placeholder="Ej: Hazlo más corto, cambia el tono, no uses emojis..."></textarea>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    <button type="button" id="regenerateBtn" class="py-3.5 px-4 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-black transition-all flex items-center justify-center gap-2 shadow-md">
-                        <span>🔄 Agregar Ajuste al Prompt</span>
-                    </button>
-                    <button type="button" id="backToEditBtn" class="py-3.5 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
-                        <span>✏️ Editar Formulario Inicial</span>
-                    </button>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <button type="button" id="copyBtn" class="sm:col-span-2 py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-black transition-all shadow-lg shadow-slate-300 flex items-center justify-center gap-2">
+                    <span>📋 Copiar Prompt</span>
+                </button>
+                <button type="button" id="backToEditBtn" class="sm:col-span-1 py-4 bg-white border-2 border-slate-200 text-slate-700 rounded-2xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                    <span>✏️ Volver a editar</span>
+                </button>
             </div>
         </div>
 
@@ -214,34 +175,23 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 5;
-        let feedbackHistory = [];
-
-        const formData = {
-            promocionando: 'Empresa',
-            region: 'Norte de Quito (República)'
-        };
+        const totalSteps = 4;
+        const formData = { promocionando: 'Empresa (Corporativo)' };
 
         const stepTitles = [
-            "Paso 1: Contexto de la Campaña",
+            "Paso 1: Contexto de Proyecto",
             "Paso 2: Canales y Formato",
-            "Paso 3: Estrategia Inmobiliaria",
-            "Paso 4: Ángulo Creativo",
-            "Paso 5: Filtros Adicionales"
+            "Paso 3: Estrategia y Audiencia",
+            "Paso 4: Toque Final"
         ];
 
-        document.getElementById('homeBtn').addEventListener('click', () => {
-            location.reload();
-        });
+        document.getElementById('homeBtn').addEventListener('click', () => location.reload());
 
         document.querySelectorAll('.option-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const group = btn.dataset.group;
                 document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
                     b.classList.remove('border-slate-900', 'bg-slate-50', 'text-slate-900', 'active-opt');
-                    if(b.textContent.includes('Empresa') || b.textContent.includes('Producto') || b.textContent.includes('Evento')) {
-                        b.classList.remove('bg-slate-50', 'text-slate-900');
-                    }
                     b.classList.add('border-slate-200', 'text-slate-500');
                 });
                 btn.classList.remove('border-slate-200', 'text-slate-500');
@@ -298,7 +248,6 @@
                 updateSteps();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                feedbackHistory = []; 
                 buildAndShowPrompt();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -313,62 +262,51 @@
         });
 
         function buildAndShowPrompt() {
-            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim().replace(/^[^\w\s]+/, '').trim()).join(', ') || 'General';
+            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim()).join(', ') || 'General';
             const formato = document.getElementById('formatoOutput').value;
             const objetivo = document.getElementById('objetivo').value;
             const audiencia = document.getElementById('audiencia').value || 'Público corporativo e inversionistas';
-            const painPoints = document.getElementById('painPoints').value || 'Desarrollo urbano y crecimiento patrimonial';
-            const palabrasNegativasAdicionales = document.getElementById('palabrasNegativas').value || 'Ninguna adicional';
+            const painPoints = document.getElementById('painPoints').value || 'Ninguno especificado adicionalmente.';
+            const palabrasNegativasAdicionales = document.getElementById('palabrasNegativas').value || 'Ninguna extra';
+
+            // REGLAS ESPECÍFICAS DE PROYECTO INYECTADAS
+            let reglasProyecto = "";
+            if (formData.promocionando === "Pixel") {
+                reglasProyecto = "\n- ENFOQUE PIXEL: No vendas departamentos. Vende inversión. Comunica: La Magdalena, el Metro, 17 minutos al centro financiero, plan urbano, renta temporal y financiamiento directo.";
+            } else if (formData.promocionando === "Magnus") {
+                reglasProyecto = "\n- ENFOQUE MAGNUS: Vende: La Carolina, el edificio más alto, vista increíble, inversión premium y amenidades AAA.";
+            } else if (formData.promocionando === "Imagine") {
+                reglasProyecto = "\n- ENFOQUE IMAGINE: Enfatiza la ubicación en la González Suárez, exclusividad, el edificio ya terminado y calidad de vida.";
+            } else if (formData.promocionando === "Proyectos en Desarrollo (Smart, Rubik, Musk, Dablanc)") {
+                reglasProyecto = "\n- ENFOQUE PROYECTOS EN OBRA: Muestra avance, progreso constructivo, arquitectura y planificación. PROHIBIDO mencionar retrasos o fases de riesgo.";
+            }
 
             let reglasCanal = "";
-            if (plataformas.includes("Instagram")) reglasCanal += "\n   - Instagram: Debe incluir Hook, Desarrollo, Valor, CTA corto y Hashtags. NUNCA más de dos párrafos largos.";
-            if (plataformas.includes("LinkedIn")) reglasCanal += "\n   - LinkedIn: Tono estrictamente institucional. Hablar de procesos, equipos, innovación, cultura y liderazgo. CERO tono comercial.";
-            if (plataformas.includes("WhatsApp")) reglasCanal += "\n   - WhatsApp: Muy corto, directo, conversacional y con emojis controlados.";
+            if (plataformas.includes("Instagram")) reglasCanal += "\n- INSTAGRAM: Hook, Desarrollo, Valor, CTA corto. Máximo 2 párrafos largos.";
+            if (plataformas.includes("LinkedIn")) reglasCanal += "\n- LINKEDIN: Tono corporativo, hablar de procesos e innovación. NADA comercial.";
+            if (plataformas.includes("WhatsApp")) reglasCanal += "\n- WHATSAPP: Muy corto, conversacional y directo.";
             
-            let formatoExtendido = "";
-            if (formato === "Pauta publicitaria") {
-                formatoExtendido = "\n- FORMATO REQUERIDO (PAUTA): Tienes que entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe estar separada y contener explícitamente: [1] Copy principal, [2] Headline (Título corto) y [3] Descripción.";
-            } else if (formato === "Blog SEO" || plataformas.includes("Blog SEO")) {
-                formatoExtendido = `\n- FORMATO REQUERIDO (BLOG SEO):
-   - Extensión: 200 a 500 palabras.
-   - Estructura obligatoria: Un H1 natural con la keyword principal, un párrafo introductorio que responda la intención de búsqueda, al menos un H2 y H3.
-   - Párrafos cortos de 3 a 5 líneas. Mucho aire visual. Voz activa.
-   - Cierre: Párrafo institucional sobre Alpha Builders (compromiso con innovación, calidad, etc.) sin sonar comercial.`;
-            }
+            let formatoExtendido = formato === "Pauta publicitaria" 
+                ? "\n- FORMATO DE SALIDA: Genera 3 OPCIONES DIFERENTES. Cada una debe tener: [1] Copy, [2] Headline y [3] Descripción."
+                : (formato === "Blog SEO" ? "\n- FORMATO BLOG SEO: 200 a 500 palabras, H1 con keyword principal, H2, párrafos cortos de 3 líneas y cierre corporativo sutil." : "");
 
-            let masterPrompt = "";
+            let masterPrompt = `Eres el Director Creativo y Estratega Inmobiliario de Alpha Builders en Ecuador. Crea un copy de altísima calidad basado en estas directrices absolutas:
 
-            if (feedbackHistory.length > 0) {
-                masterPrompt += `[⚠️ INSTRUCCIONES DE CORRECCIÓN - PRIORIDAD MÁXIMA ⚠️]\nAplica ESTRICTAMENTE estos ajustes al texto que estabas generando previamente:\n${feedbackHistory.map((f, i) => `${i+1}. ${f}`).join('\n')}\n\n------------------------------------------------------------\n\n`;
-            }
+1. FILOSOFÍA Y TONO:
+- Vende estilo de vida, inversión inteligente y plusvalía (nunca ladrillos).
+- Tono: Profesional, elegante, premium, humano. 
+- PROHIBIDO USAR: "Somos los mejores", "La mejor constructora", "garantizamos", "100%", "perfecto", "seguro". 
 
-            masterPrompt += `Eres un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario de la empresa Alpha Builders, especializado en la industria inmobiliaria de Ecuador. Tu objetivo fundamental es educar, generar confianza y posicionar la marca a través de contenido de altísimo valor.
+2. CONTEXTO DE ESTA PIEZA:
+- Campaña / Proyecto: ${formData.promocionando}${reglasProyecto}
+- Objetivo: ${objetivo}
+- Audiencia: ${audiencia}
+- Detalles clave a resaltar: ${painPoints}
+- Palabras bloqueadas adicionales: ${palabrasNegativasAdicionales}
 
-1. CONTEXTO DE NEGOCIO Y FILOSOFÍA:
-- No vendemos ladrillos ni departamentos. Vendemos estilo de vida, inversión inteligente, plusvalía, crecimiento patrimonial y desarrollo urbano.
-- El contenido debe hacer sentir al usuario que comprar un inmueble con Alpha Builders es la decisión financiera más inteligente.
-
-2. TONO DE COMUNICACIÓN:
-- Profesional, moderno, elegante, premium, educativo e inspirador.
-- NUNCA exagerado. NUNCA arrogante. NUNCA sonar como un vendedor insistente o tradicional.
-- Escribe con frases cortas y claras. Evita el lenguaje robótico o excesivamente técnico.
-
-3. LO QUE ESTÁ ESTRICTAMENTE PROHIBIDO (NO USAR BAJO NINGUNA CIRCUNSTANCIA):
-- Clichés: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora", "La empresa más confiable".
-- Promesas absolutas: "garantizamos", "100%", "seguro", "perfecto".
-- Si se habla de la empresa: No responder ataques, no justificar, no discutir. Siempre comunica desde el valor.
-- Palabras adicionales prohibidas para esta campaña: ${palabrasNegativasAdicionales}
-
-4. PARÁMETROS ESPECÍFICOS DE ESTA CAMPAÑA:
-- Categoría de Promoción: ${formData.promocionando}
-- Región de Enfoque: ${formData.region}
-- Objetivo Principal: ${objetivo}
-- Audiencia Meta: ${audiencia}
-- Información Clave a Destacar: ${painPoints} (Nota: Si se menciona Pixel, enfatizar ubicación estratégica, metro y plusvalía; si es Magnus, vista e inversión premium; si es Imagine, exclusividad y amenities).
-
-5. REGLAS DE PLATAFORMA Y FORMATO DE SALIDA:
-- Plataformas destino: ${plataformas}${reglasCanal}${formatoExtendido}
-- Call To Action (CTA): Termina siempre con un CTA claro y no agresivo (ej: Agenda tu asesoría, Descubre más, Escríbenos).`;
+3. PLATAFORMAS Y FORMATO:
+- Canales: ${plataformas}${reglasCanal}${formatoExtendido}
+- CTA: Terminar siempre con un Call To Action claro pero no agresivo.`;
 
             document.getElementById('resultPrompt').value = masterPrompt;
             document.getElementById('wizardContainer').classList.add('hidden');
@@ -382,7 +320,7 @@
             
             const btn = document.getElementById('copyBtn');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<span>✅ ¡Copiado con éxito!</span>';
+            btn.innerHTML = '<span>✅ ¡Prompt copiado!</span>';
             btn.classList.remove('bg-slate-900', 'hover:bg-black');
             btn.classList.add('bg-green-600', 'hover:bg-green-700');
             
@@ -396,18 +334,6 @@
         document.getElementById('backToEditBtn').addEventListener('click', () => {
             document.getElementById('outputContainer').classList.add('hidden');
             document.getElementById('wizardContainer').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.getElementById('regenerateBtn').addEventListener('click', () => {
-            const feedback = document.getElementById('feedbackInput').value.trim();
-            if (!feedback) {
-                alert('Escribe un ajuste antes de agregarlo al prompt.');
-                return;
-            }
-            feedbackHistory.push(feedback);
-            buildAndShowPrompt();
-            document.getElementById('feedbackInput').value = '';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
