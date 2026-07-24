@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Prompts MKT - Alpha Builders</title>
+    <title>Asistente Copywriter - Alpha Builders</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c7d2fe; border-radius: 8px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #818cf8; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        /* Clases activas personalizadas en negro/gris oscuro */
+        .active-opt { border-color: #0f172a !important; background-color: #f8fafc !important; color: #0f172a !important; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
+        .active-multi { border-color: #0f172a !important; background-color: #f8fafc !important; color: #0f172a !important; }
     </style>
 </head>
-<body class="bg-gradient-to-br from-slate-50 via-indigo-50/30 to-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
+<body class="bg-gradient-to-br from-white via-slate-50 to-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-slate-900 selection:text-white">
 
     <!-- Header Corporativo -->
-    <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/80 py-6 text-center shadow-sm sticky top-0 z-40">
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 py-6 text-center shadow-sm sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-xl shadow-md shadow-indigo-200">AB</div>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-xl shadow-md">AB</div>
                 <div class="text-left">
-                    <h1 class="text-lg font-bold text-slate-900 leading-tight">Alpha Builders</h1>
-                    <p class="text-xs text-indigo-600 font-semibold tracking-wide">ASISTENTE COPYWRITER • COSTO $0</p>
+                    <h1 class="text-lg font-black text-slate-900 leading-tight tracking-tight">Alpha Builders</h1>
+                    <p class="text-xs text-slate-500 font-bold tracking-widest uppercase mt-0.5">Asistente Copywriter</p>
                 </div>
             </div>
-            <span class="text-xs px-3 py-1 bg-indigo-50 text-indigo-700 font-medium rounded-full border border-indigo-100 hidden sm:inline-block">Modo Producción Activo</span>
+            <span class="text-xs px-3 py-1 bg-slate-100 text-slate-600 font-bold rounded-full border border-slate-200 hidden sm:inline-block tracking-wide">COSTO $0</span>
         </div>
     </header>
 
@@ -32,17 +36,17 @@
     <main class="max-w-3xl mx-auto w-full px-4 py-8 my-auto">
         
         <!-- Wizard Card -->
-        <div id="wizardContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-8 sm:p-10 transition-all duration-300">
+        <div id="wizardContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sm:p-10 transition-all duration-300">
             
             <!-- Progress Header & Steps -->
             <div class="mb-8">
                 <div class="flex justify-between items-center mb-3">
-                    <span id="step-title-indicator" class="text-xs font-bold uppercase tracking-wider text-indigo-600">Paso 1 de 5</span>
-                    <span id="step-percentage" class="text-xs font-medium text-slate-400">20% Completado</span>
+                    <span id="step-title-indicator" class="text-xs font-black uppercase tracking-wider text-slate-900">Paso 1 de 5</span>
+                    <span id="step-percentage" class="text-xs font-bold text-slate-400">20% Completado</span>
                 </div>
                 <div class="flex justify-between items-center relative">
                     <div class="absolute left-0 right-0 top-1/2 transform -translate-y-1/2 h-1.5 bg-slate-100 rounded-full z-0"></div>
-                    <div id="step-indicator-1" class="w-9 h-9 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm z-10 relative shadow-sm shadow-indigo-200 transition-all">1</div>
+                    <div id="step-indicator-1" class="w-9 h-9 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm z-10 relative shadow-md transition-all">1</div>
                     <div id="step-indicator-2" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">2</div>
                     <div id="step-indicator-3" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">3</div>
                     <div id="step-indicator-4" class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-sm z-10 relative transition-all">4</div>
@@ -57,32 +61,33 @@
                 <div class="step-content space-y-6" data-step="1">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Contexto de la Campaña</h2>
-                        <p class="text-sm text-slate-500 mt-1">Define los ejes principales del mensaje institucional y comercial.</p>
+                        <p class="text-sm text-slate-500 mt-1">¿Sobre qué pilar inmobiliario o corporativo vamos a comunicar?</p>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué estamos promocionando?</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-center font-semibold text-sm transition-all border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm active-opt" data-group="promocionando" data-value="Empresa">🏢 Empresa</button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-semibold text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="promocionando" data-value="Producto">📦 Producto</button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-center font-semibold text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="promocionando" data-value="Evento">🗓️ Evento</button>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Proyecto / Enfoque</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Pixel">Pixel</button>
+                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Magnus">Magnus</button>
+                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all border-slate-200 text-slate-500 hover:border-slate-300" data-group="promocionando" data-value="Imagine">Imagine</button>
+                            <button type="button" class="option-btn p-3 border-2 rounded-2xl text-center font-bold text-sm transition-all active-opt" data-group="promocionando" data-value="Institucional / Corporativo">Empresa</button>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Región de Enfoque y Tono Local</label>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Región de Enfoque</label>
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-left sm:text-center transition-all border-indigo-600 bg-indigo-50/50 text-indigo-900 shadow-sm active-opt" data-group="region" data-value="Norte de Quito (República)">
+                            <button type="button" class="option-btn p-4 border-2 rounded-2xl text-left sm:text-center transition-all active-opt" data-group="region" data-value="Norte de Quito (República)">
                                 <div class="font-bold text-sm">Norte (Quito)</div>
-                                <div class="text-xs text-indigo-700 mt-0.5 opacity-80">Ejecutivo / AAA</div>
+                                <div class="text-xs mt-0.5 opacity-80">Ejecutivo / AAA</div>
                             </button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="region" data-value="Sur de Quito (La Magdalena)">
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-500" data-group="region" data-value="Sur de Quito (La Magdalena)">
                                 <div class="font-bold text-sm">Sur (Quito)</div>
-                                <div class="text-xs text-slate-400 mt-0.5">Cálido / Tradicional</div>
+                                <div class="text-xs mt-0.5">Tradicional</div>
                             </button>
-                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-group="region" data-value="Medellín">
+                            <button type="button" class="option-btn p-4 border-2 border-slate-200 rounded-2xl text-left sm:text-center transition-all hover:border-slate-300 text-slate-500" data-group="region" data-value="Medellín">
                                 <div class="font-bold text-sm">Medellín</div>
-                                <div class="text-xs text-slate-400 mt-0.5">Comercial / Dinámico</div>
+                                <div class="text-xs mt-0.5">Comercial</div>
                             </button>
                         </div>
                     </div>
@@ -92,28 +97,27 @@
                 <div class="step-content space-y-6 hidden" data-step="2">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Canales y Formato de Salida</h2>
-                        <p class="text-sm text-slate-500 mt-1">Selecciona dónde se publicará y la estructura exacta requerida.</p>
                     </div>
                     
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión (Selección múltiple)</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-medium text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-value="LinkedIn">💼 LinkedIn</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="WhatsApp">💬 WhatsApp</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="Instagram">📸 Instagram</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="Facebook">👥 Facebook</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-indigo-600 rounded-2xl text-center font-medium text-sm transition-all text-indigo-900 bg-indigo-50/50 active-multi" data-value="TikTok">⚡ TikTok</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-medium text-sm transition-all hover:border-slate-300 text-slate-600 bg-slate-50/50" data-value="Email">✉️ Email</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="LinkedIn">LinkedIn</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="WhatsApp">WhatsApp</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Instagram">Instagram</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Facebook">Facebook</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="TikTok">TikTok</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="Blog SEO">Blog SEO</button>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Formato de Salida Requerido</label>
-                        <select id="formatoOutput" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 font-medium text-slate-700 transition-all">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Estructura del Contenido</label>
+                        <select id="formatoOutput" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
                             <option value="Pauta publicitaria (Ad Copy)">Pauta publicitaria (Ad Copy) [Exige Copy, Headline y Descripción]</option>
-                            <option value="Invitación a Evento">Invitación a Evento [Estructura de fechas y beneficios]</option>
-                            <option value="Estrategia Inbound">Estrategia Inbound [Contenido de valor profundo]</option>
-                            <option value="Comunicación Interna">Comunicación Interna [Cultura y alineación corporativa]</option>
+                            <option value="Post Orgánico">Post Orgánico [Educativo / Valor]</option>
+                            <option value="Artículo de Blog SEO">Artículo de Blog SEO [Estructura H1, H2, 200-500 palabras]</option>
+                            <option value="Comunicación Interna">Comunicación Interna [Cultura Corporativa]</option>
                         </select>
                     </div>
                 </div>
@@ -121,95 +125,93 @@
                 <!-- PASO 3: Objetivo y Audiencia -->
                 <div class="step-content space-y-6 hidden" data-step="3">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Objetivo y Audiencia Meta</h2>
-                        <p class="text-sm text-slate-500 mt-1">Hacia quién nos dirigimos y qué esperamos lograr.</p>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Estrategia Inmobiliaria</h2>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo Principal de la Campaña</label>
-                        <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 font-medium text-slate-700 transition-all">
-                            <option value="Generar Awareness (Reconocimiento de marca y posicionamiento)">Generar Awareness (Reconocimiento y posicionamiento)</option>
-                            <option value="Captación de Leads Calificados (Prospectos de alto valor)">Captación de Leads Calificados</option>
-                            <option value="Engagement y Comunidad (Interacción activa)">Engagement y Comunidad</option>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo del Mensaje</label>
+                        <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
+                            <option value="Vender estilo de vida, inversión y plusvalía">Impulsar Inversión y Plusvalía</option>
+                            <option value="Educar y generar confianza mediante procesos">Educación Inmobiliaria</option>
+                            <option value="Generar leads cualificados">Captación de Leads</option>
+                            <option value="Mostrar cultura organizacional e innovación">Posicionamiento Corporativo</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Descripción Detallada de la Audiencia</label>
-                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: Segmento exclusivo de Ecuador AAA (14% de la población), profesionales enfocados en patrimonio a largo plazo..."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Audiencia Meta</label>
+                        <textarea id="audiencia" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Profesionales buscando crecimiento patrimonial, interesados en rentas temporales (Airbnb)..."></textarea>
                     </div>
                 </div>
 
                 <!-- PASO 4: Mensaje y Pain Points -->
                 <div class="step-content space-y-6 hidden" data-step="4">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Mensaje Clave y Puntos de Dolor</h2>
-                        <p class="text-sm text-slate-500 mt-1">Qué problema resolvemos o qué propuesta diferenciadora aportamos.</p>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Ángulo Creativo</h2>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Desarrollo del Mensaje / Pain Points</label>
-                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: Inversión en bienes raíces con alta proyección de plusvalía, respaldo institucional de Alpha Builders y seguridad jurídica total..."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">¿Qué vamos a destacar? (Beneficios, ubicación, amenities)</label>
+                        <textarea id="painPoints" rows="5" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: 17 minutos al centro financiero, financiamiento directo, diseño arquitectónico..."></textarea>
                     </div>
                 </div>
 
                 <!-- PASO 5: Reglas Estrictas -->
                 <div class="step-content space-y-6 hidden" data-step="5">
                     <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Restricciones y Políticas Editoriales</h2>
-                        <p class="text-sm text-slate-500 mt-1">Palabras prohibidas y normativas para evitar bloqueos en Meta o desalineación corporativa.</p>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Filtros Adicionales</h2>
+                        <p class="text-sm text-slate-500 mt-1">El sistema ya bloquea clichés por defecto. Añade aquí palabras específicas a evitar en esta campaña.</p>
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Palabras Negativas / Prohibidas (Evitar riesgos)</label>
-                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-indigo-600 focus:outline-none bg-slate-50/50 text-slate-700 transition-all placeholder:text-slate-400" placeholder="Ej: barato, inversiones milagrosas, hoy mismo, rentabilidad fija exagerada, términos monopólicos..."></textarea>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Palabras Adicionales a Evitar</label>
+                        <textarea id="palabrasNegativas" rows="4" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: retrasos, fases, competencia..."></textarea>
                     </div>
                 </div>
 
             </form>
 
             <!-- Navigation Buttons -->
-            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-100">
-                <button type="button" id="prevBtn" class="px-6 py-3 rounded-2xl border-2 border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 hidden transition-all">Atrás</button>
-                <button type="button" id="nextBtn" class="ml-auto px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold text-sm hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all flex items-center gap-2">
+            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-200">
+                <button type="button" id="prevBtn" class="px-6 py-3.5 rounded-2xl border-2 border-slate-200 text-slate-600 font-bold text-sm hover:bg-slate-50 hidden transition-all">Atrás</button>
+                <button type="button" id="nextBtn" class="ml-auto px-8 py-3.5 rounded-2xl bg-slate-900 text-white font-bold text-sm hover:bg-black shadow-lg shadow-slate-300 transition-all flex items-center gap-2">
                     <span>Siguiente</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
 
         </div>
 
         <!-- Output Section (Hidden initially) -->
-        <div id="outputContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 p-8 sm:p-10 hidden transition-all duration-300">
+        <div id="outputContainer" class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sm:p-10 hidden transition-all duration-300">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Tu Prompt Maestro</h3>
-                    <p class="text-sm text-slate-500 mt-0.5">Copia este texto y pégalo en tu IA de confianza (ChatGPT, Claude, Gemini).</p>
+                    <h3 class="text-2xl font-black text-slate-900 tracking-tight">Instrucción Maestra Generada</h3>
+                    <p class="text-sm text-slate-500 mt-0.5 font-medium">Copia y pega este texto en tu IA.</p>
                 </div>
-                <span class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl border border-emerald-100">✨</span>
             </div>
             
-            <textarea id="resultPrompt" rows="10" class="w-full p-4 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-xs text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
+            <textarea id="resultPrompt" rows="10" class="w-full p-5 bg-slate-50 border-2 border-slate-200 rounded-2xl font-mono text-sm text-slate-700 mb-6 focus:outline-none custom-scrollbar" readonly></textarea>
             
-            <button type="button" id="copyBtn" class="w-full py-4 bg-emerald-600 text-white rounded-2xl font-bold text-sm hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 flex items-center justify-center gap-2 mb-8">
-                <span>📋 Copiar Prompt Completo</span>
+            <button type="button" id="copyBtn" class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-black transition-all shadow-lg shadow-slate-300 flex items-center justify-center gap-2 mb-8">
+                <span>📋 Copiar Instrucción</span>
             </button>
 
             <!-- Feedback & Iteration Panel -->
-            <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 space-y-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4">
                 <div>
-                    <label class="block text-sm font-bold text-slate-800 mb-1">¿No te gustó el resultado de la IA? Ajusta el prompt:</label>
-                    <p class="text-xs text-slate-500">Escribe tus observaciones (ej. "está aburrido y no comprende el target", "hazlo más disruptivo").</p>
+                    <label class="block text-sm font-black text-slate-900 mb-1">¿Ajustar el resultado?</label>
+                    <p class="text-xs text-slate-500 font-medium">Ej: "Hazlo más corto", "Enfócate más en la plusvalía".</p>
                 </div>
                 
-                <textarea id="feedbackInput" rows="3" class="w-full p-3.5 bg-white border border-slate-300 rounded-xl focus:border-indigo-600 focus:outline-none text-slate-700 text-sm shadow-sm transition-all placeholder:text-slate-400" placeholder="Escribe aquí tu retroalimentación..."></textarea>
+                <textarea id="feedbackInput" rows="3" class="w-full p-4 bg-white border-2 border-slate-200 rounded-xl focus:border-slate-900 focus:outline-none text-slate-700 font-medium text-sm transition-all placeholder:text-slate-400" placeholder="Escribe aquí tu ajuste..."></textarea>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                    <button type="button" id="regenerateBtn" class="py-3 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-sm">
-                        <span>🔄 Regenerar con Ajuste</span>
+                    <button type="button" id="regenerateBtn" class="py-3.5 px-4 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-black transition-all flex items-center justify-center gap-2 shadow-md">
+                        <span>🔄 Aplicar Ajuste</span>
                     </button>
-                    <button type="button" id="backToEditBtn" class="py-3 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-100 transition-all flex items-center justify-center gap-2 shadow-sm">
-                        <span>✏️ Volver a editar</span>
+                    <button type="button" id="backToEditBtn" class="py-3.5 px-4 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold text-sm hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+                        <span>✏️ Editar Formulario</span>
                     </button>
                 </div>
             </div>
@@ -217,51 +219,44 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 text-xs text-slate-400 font-medium">
-        Alpha Builders • Sistema Interno de Copywriting Profesional
-    </footer>
-
     <!-- Script de Funcionalidad e Interactividad -->
     <script>
         let currentStep = 1;
         const totalSteps = 5;
         const formData = {
-            promocionando: 'Empresa',
+            promocionando: 'Institucional / Corporativo',
             region: 'Norte de Quito (República)'
         };
 
         const stepTitles = [
             "Paso 1: Contexto de la Campaña",
             "Paso 2: Canales y Formato",
-            "Paso 3: Objetivo y Audiencia",
-            "Paso 4: Mensaje y Pain Points",
-            "Paso 5: Restricciones y Políticas"
+            "Paso 3: Estrategia Inmobiliaria",
+            "Paso 4: Ángulo Creativo",
+            "Paso 5: Filtros Adicionales"
         ];
 
-        // Manejo de botones de opción única
         document.querySelectorAll('.option-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const group = btn.dataset.group;
                 document.querySelectorAll(`[data-group="${group}"]`).forEach(b => {
-                    b.classList.remove('border-indigo-600', 'bg-indigo-50/50', 'text-indigo-900', 'shadow-sm', 'active-opt');
-                    b.classList.add('border-slate-200', 'text-slate-600', 'bg-slate-50/50');
+                    b.classList.remove('border-slate-900', 'bg-slate-50', 'text-slate-900', 'active-opt');
+                    b.classList.add('border-slate-200', 'text-slate-500');
                 });
-                btn.classList.remove('border-slate-200', 'text-slate-600', 'bg-slate-50/50');
-                btn.classList.add('border-indigo-600', 'bg-indigo-50/50', 'text-indigo-900', 'shadow-sm', 'active-opt');
+                btn.classList.remove('border-slate-200', 'text-slate-500');
+                btn.classList.add('border-slate-900', 'bg-slate-50', 'text-slate-900', 'active-opt');
                 formData[group] = btn.dataset.value;
             });
         });
 
-        // Manejo de botones de selección múltiple (Plataformas)
         document.querySelectorAll('.multi-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                btn.classList.toggle('border-indigo-600');
-                btn.classList.toggle('bg-indigo-50/50');
-                btn.classList.toggle('text-indigo-900');
+                btn.classList.toggle('border-slate-900');
+                btn.classList.toggle('bg-slate-50');
+                btn.classList.toggle('text-slate-900');
                 btn.classList.toggle('active-multi');
                 btn.classList.toggle('border-slate-200');
-                btn.classList.toggle('text-slate-600');
+                btn.classList.toggle('text-slate-500');
             });
         });
 
@@ -277,9 +272,9 @@
                 const indicator = document.getElementById(`step-indicator-${i}`);
                 if (i <= currentStep) {
                     indicator.classList.remove('bg-slate-100', 'text-slate-400');
-                    indicator.classList.add('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-200');
+                    indicator.classList.add('bg-slate-900', 'text-white', 'shadow-md');
                 } else {
-                    indicator.classList.remove('bg-indigo-600', 'text-white', 'shadow-md', 'shadow-indigo-200');
+                    indicator.classList.remove('bg-slate-900', 'text-white', 'shadow-md');
                     indicator.classList.add('bg-slate-100', 'text-slate-400');
                 }
             }
@@ -290,9 +285,9 @@
             prevBtn.classList.toggle('hidden', currentStep === 1);
             
             if (currentStep === totalSteps) {
-                nextBtn.innerHTML = `<span>Generar Prompt Maestro</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+                nextBtn.innerHTML = `<span>Generar Prompt</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>`;
             } else {
-                nextBtn.innerHTML = `<span>Siguiente</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>`;
+                nextBtn.innerHTML = `<span>Siguiente</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/></svg>`;
             }
         }
 
@@ -316,37 +311,45 @@
         });
 
         function buildAndShowPrompt(extraFeedback = "") {
-            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim().replace(/^[^\w\s]+/, '').trim()).join(', ') || 'General';
+            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim()).join(', ') || 'General';
             const formato = document.getElementById('formatoOutput').value;
             const objetivo = document.getElementById('objetivo').value;
-            const audiencia = document.getElementById('audiencia').value || 'Público general interesado';
-            const painPoints = document.getElementById('painPoints').value || 'Propuesta de valor institucional';
-            const palabrasNegativas = document.getElementById('palabrasNegativas').value || 'Ninguna especificada';
+            const audiencia = document.getElementById('audiencia').value || 'Público corporativo e inversionistas';
+            const painPoints = document.getElementById('painPoints').value || 'Desarrollo urbano y crecimiento patrimonial';
+            const palabrasNegativasAdicionales = document.getElementById('palabrasNegativas').value || 'Ninguna adicional';
+
+            // REGLAS DINÁMICAS BASADAS EN EL MANUAL DE MARCA
+            let reglasCanal = "";
+            if (plataformas.includes("Instagram")) reglasCanal += "\n- INSTAGRAM: Estructura obligatoria (Hook, Desarrollo, Valor, CTA corto, Hashtags). Máximo dos párrafos largos.";
+            if (plataformas.includes("LinkedIn")) reglasCanal += "\n- LINKEDIN: Tono netamente institucional, hablar de procesos, innovación y cultura. Cero tono comercial.";
+            if (plataformas.includes("WhatsApp")) reglasCanal += "\n- WHATSAPP: Texto muy corto, directo, conversacional y con emojis medidos.";
+            if (formato.includes("Blog SEO") || plataformas.includes("Blog SEO")) reglasCanal += "\n- BLOG SEO: Estructura estricta H1 (con Keyword), H2, H3. Párrafos de 3-5 líneas. Extensión 200-500 palabras. Cierre institucional conectando con la visión de Alpha Builders. Optimizado para lectura (Rank Math/Yoast verde).";
 
             let estructuraExtra = "";
             if (formato.includes("Pauta")) {
-                estructuraExtra = `
-- REQUISITO OBLIGATORIO DE SALIDA: Debes entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener separados y claros los siguientes 3 campos exactos:
-  1. Copy (Texto Principal): Altamente persuasivo y adaptado al canal.
-  2. Headline (Título): Corto, directo y de alto impacto.
-  3. Descripción: Respaldo institucional y de marca de Alpha Builders.`;
+                estructuraExtra = `\n- REQUISITO OBLIGATORIO DE SALIDA: Debes entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener: Copy (Principal), Headline (Título corto) y Descripción.`;
             }
 
-            let masterPrompt = `Actúa como un Copywriter Senior experto en marketing inmobiliario y corporativo para Alpha Builders. 
-Tu tarea es redactar contenido altamente persuasivo basándote estrictamente en los siguientes parámetros:
+            let masterPrompt = `Actúa como un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario, especializado en la industria inmobiliaria de Ecuador. Tu objetivo es educar, generar confianza y posicionar la marca.
 
-1. Promocionamos: ${formData.promocionando}
-2. Región de Enfoque y Tono Local: ${formData.region} (Norte: ejecutivo/aspiracional segmento AAA; Sur: cálido y de barrio tradicional; Medellín: comercial y dinámico).
-3. Canales de Difusión: ${plataformas}
-4. Formato de Salida Requerido: ${formato}
-5. Objetivo Principal: ${objetivo}
+REGLAS DE ORO DEL MANUAL DE MARCA:
+- Tono: Profesional, moderno, elegante, premium y educativo. NUNCA exagerado, arrogante o como "vendedor insistente".
+- Filosofía: No vendemos departamentos. Vendemos estilo de vida, inversión, plusvalía y desarrollo urbano.
+- PALABRAS Y FRASES PROHIBIDAS BAJO TODA CIRCUNSTANCIA: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora", "La empresa más confiable", "garantizamos", "100%", "seguro", "perfecto". Nunca justificar ni responder ataques.
+- CTA: Siempre terminar con un llamado a la acción no agresivo (ej. "Agenda tu asesoría", "Conoce más").
+
+PARÁMETROS DE ESTA SOLICITUD:
+1. Proyecto/Enfoque: ${formData.promocionando}
+2. Región: ${formData.region}
+3. Canales: ${plataformas} ${reglasCanal}
+4. Formato: ${formato} ${estructuraExtra}
+5. Objetivo: ${objetivo}
 6. Audiencia Meta: ${audiencia}
-7. Mensaje / Puntos de Dolor: ${painPoints}
-8. Palabras Negativas / Prohibidas (NO USAR BAJO NINGUNA CIRCUNSTANCIA): ${palabrasNegativas}. Evita promesas financieras exageradas y cuida las normativas y políticas editoriales.
-${estructuraExtra}`;
+7. Desarrollo del Mensaje: ${painPoints}
+8. Filtros Adicionales (Tampoco usar estas palabras): ${palabrasNegativasAdicionales}`;
 
             if (extraFeedback) {
-                masterPrompt += `\n\n[AJUSTE CRÍTICO SOLICITUD DEL USUARIO]: ${extraFeedback}`;
+                masterPrompt += `\n\n[IMPORTANTE - AJUSTE DEL USUARIO]: ${extraFeedback}`;
             }
 
             document.getElementById('resultPrompt').value = masterPrompt;
@@ -358,10 +361,9 @@ ${estructuraExtra}`;
             const copyText = document.getElementById('resultPrompt');
             copyText.select();
             navigator.clipboard.writeText(copyText.value);
-            alert('¡Prompt copiado al portapapeles con éxito!');
+            alert('¡Instrucción copiada al portapapeles!');
         });
 
-        // Funcionalidad plenamente conectada para los botones de iteración
         document.getElementById('backToEditBtn').addEventListener('click', () => {
             document.getElementById('outputContainer').classList.add('hidden');
             document.getElementById('wizardContainer').classList.remove('hidden');
@@ -371,7 +373,7 @@ ${estructuraExtra}`;
         document.getElementById('regenerateBtn').addEventListener('click', () => {
             const feedback = document.getElementById('feedbackInput').value.trim();
             if (!feedback) {
-                alert('Por favor escribe un ajuste en la caja de texto antes de regenerar.');
+                alert('Escribe un ajuste antes de regenerar.');
                 return;
             }
             buildAndShowPrompt(feedback);
