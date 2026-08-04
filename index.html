@@ -77,10 +77,15 @@
                     <!-- Submenú Dinámico para Producto (Oculto por defecto) -->
                     <div id="submenu-producto" class="hidden slide-down bg-slate-50 border border-slate-200 rounded-2xl p-5">
                         <label class="block text-sm font-bold text-slate-700 mb-3">Selecciona el Proyecto Inmobiliario:</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
                             <button type="button" class="btn-proyecto p-3 border-2 border-slate-900 bg-white text-slate-900 rounded-xl text-center font-bold text-xs transition-all active-opt" data-value="Pixel">Pixel</button>
                             <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Magnus">Magnus</button>
                             <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Imagine">Imagine</button>
+                            <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Castle Rock">Castle Rock</button>
+                            <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Westinghouse">Westinghouse</button>
+                            <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Thomas Edison">Thomas Edison</button>
+                            <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Musk">Musk</button>
+                            <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Lafuente">Lafuente</button>
                             <button type="button" class="btn-proyecto p-3 border-2 border-slate-200 bg-white text-slate-500 rounded-xl text-center font-bold text-xs transition-all hover:border-slate-300" data-value="Proyectos en Desarrollo">En Construcción</button>
                         </div>
                     </div>
@@ -112,12 +117,12 @@
                     </div>
                     
                     <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión (Selección múltiple)</label>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Plataformas de Difusión (Selección múltiple, marca las que necesites)</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                             <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="LinkedIn">LinkedIn</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="WhatsApp">WhatsApp</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Instagram">Instagram</button>
-                            <button type="button" class="multi-btn p-3.5 border-2 rounded-2xl text-center font-bold text-sm transition-all active-multi" data-value="Facebook">Facebook</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="WhatsApp">WhatsApp</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="Instagram">Instagram</button>
+                            <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="Facebook">Facebook</button>
                             <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="TikTok">TikTok</button>
                             <button type="button" class="multi-btn p-3.5 border-2 border-slate-200 rounded-2xl text-center font-bold text-sm transition-all hover:border-slate-300 text-slate-500" data-value="Blog SEO">Blog SEO</button>
                         </div>
@@ -142,12 +147,7 @@
                     
                     <div>
                         <label class="block text-sm font-bold text-slate-700 mb-2">Objetivo del Mensaje</label>
-                        <select id="objetivo" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 font-bold text-slate-700 transition-all cursor-pointer">
-                            <option value="Impulsar la inversión inmobiliaria, crecimiento patrimonial y plusvalía.">Impulsar Inversión y Plusvalía</option>
-                            <option value="Educar al usuario y generar confianza mediante evidencia visual y procesos.">Educación Inmobiliaria</option>
-                            <option value="Generar leads cualificados para el equipo comercial.">Captación de Leads</option>
-                            <option value="Mostrar la cultura organizacional, liderazgo e innovación.">Posicionamiento Corporativo</option>
-                        </select>
+                        <textarea id="objetivo" rows="3" class="w-full p-4 border-2 border-slate-200 rounded-2xl focus:border-slate-900 focus:outline-none bg-slate-50 text-slate-700 font-medium transition-all placeholder:text-slate-400" placeholder="Ej: Impulsar la inversión inmobiliaria, crecimiento patrimonial y plusvalía..."></textarea>
                     </div>
 
                     <div>
@@ -238,7 +238,7 @@
             location.reload();
         });
 
-        // LÓGICA CATEGORÍA PRINCIPAL (Empresa, Producto, Evento)
+        // LÓGICA CATEGORÍA PRINCIPAL
         document.querySelectorAll('.btn-categoria').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.btn-categoria').forEach(b => {
@@ -286,7 +286,7 @@
             });
         });
 
-        // LÓGICA SELECCIÓN MÚLTIPLE (Redes sociales)
+        // LÓGICA SELECCIÓN MÚLTIPLE (Canales Flexibles e Independientes)
         document.querySelectorAll('.multi-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 btn.classList.toggle('border-slate-900');
@@ -349,74 +349,93 @@
         });
 
         function buildAndShowPrompt() {
-            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim()).join(', ') || 'General';
+            const plataformas = Array.from(document.querySelectorAll('.active-multi')).map(b => b.textContent.trim()).join(', ') || 'Multicanal/General';
             const formato = document.getElementById('formatoOutput').value;
-            const objetivo = document.getElementById('objetivo').value;
-            const audiencia = document.getElementById('audiencia').value || 'Público corporativo e inversionistas';
-            const painPoints = document.getElementById('painPoints').value || 'Desarrollo urbano y crecimiento patrimonial';
+            const objetivo = document.getElementById('objetivo').value || 'Impulsar el valor de marca, plusvalía e interés comercial.';
+            const audiencia = document.getElementById('audiencia').value || 'Público corporativo, inversores y compradores AAA';
+            const painPoints = document.getElementById('painPoints').value || 'Crecimiento patrimonial, desarrollo y seguridad de inversión.';
             const palabrasNegativasAdicionales = document.getElementById('palabrasNegativas').value || 'Ninguna adicional';
 
-            // REGLAS ESPECÍFICAS DE PROYECTO (Solo se inyectan si se seleccionó "Producto")
             let reglasProyecto = "";
             let enfoquePromocion = formData.categoria;
 
             if (formData.categoria === "Producto") {
-                enfoquePromocion = `Proyecto: ${formData.proyecto}`;
+                enfoquePromocion = `Proyecto Inmobiliario: ${formData.proyecto}`;
                 if (formData.proyecto === "Pixel") {
                     reglasProyecto = "\n- ESTRATEGIA PIXEL: No vendas departamentos. Vende inversión. Comunica: La Magdalena, el Metro, 17 minutos al centro financiero, plan urbano, renta temporal y plusvalía.";
                 } else if (formData.proyecto === "Magnus") {
                     reglasProyecto = "\n- ESTRATEGIA MAGNUS: Vende: La Carolina, el edificio más alto, últimas unidades, vista espectacular, inversión premium y amenities.";
                 } else if (formData.proyecto === "Imagine") {
                     reglasProyecto = "\n- ESTRATEGIA IMAGINE: Enfatiza la ubicación en la González Suárez, exclusividad, el edificio terminado, amenities y calidad de vida.";
+                } else if (formData.proyecto === "Castle Rock") {
+                    reglasProyecto = "\n- ESTRATEGIA CASTLE ROCK: Enfatiza exclusividad, diseño y estatus inmobiliario.";
+                } else if (formData.proyecto === "Westinghouse") {
+                    reglasProyecto = "\n- ESTRATEGIA WESTINGHOUSE: Enfatiza innovación, modernidad y desarrollo urbano de vanguardia.";
+                } else if (formData.proyecto === "Thomas Edison") {
+                    reglasProyecto = "\n- ESTRATEGIA THOMAS EDISON: Enfatiza tecnología de los espacios, rentabilidad y diseño inteligente.";
+                } else if (formData.proyecto === "Musk") {
+                    reglasProyecto = "\n- ESTRATEGIA MUSK: Enfatiza visión de futuro, sostenibilidad y disrupción en el mercado inmobiliario.";
+                } else if (formData.proyecto === "Lafuente") {
+                    reglasProyecto = "\n- ESTRATEGIA LAFUENTE: Enfatiza tranquilidad, entornos de bienestar y calidad de vida integral.";
                 } else if (formData.proyecto === "Proyectos en Desarrollo") {
-                    reglasProyecto = "\n- ESTRATEGIA PROYECTOS EN OBRA: Muestra avance, progreso constructivo, arquitectura y planificación. PROHIBIDO mencionar retrasos o hablar de fases si existe riesgo reputacional.";
+                    reglasProyecto = "\n- ESTRATEGIA PROYECTOS EN OBRA: Muestra avance, progreso constructivo, arquitectura y planificación. PROHIBIDO mencionar retrasos o riesgos.";
                 }
             }
 
             let reglasCanal = "";
-            if (plataformas.includes("Instagram")) reglasCanal += "\n   - Instagram: Debe incluir Hook, Desarrollo, Valor, CTA corto y Hashtags. Nunca más de dos párrafos largos.";
-            if (plataformas.includes("LinkedIn")) reglasCanal += "\n   - LinkedIn: Tono estrictamente institucional. Hablar de procesos, equipos, innovación y cultura. Cero tono comercial.";
+            if (plataformas.includes("Instagram")) reglasCanal += "\n   - Instagram: Hook, Desarrollo, Valor, CTA corto y Hashtags. Nunca más de dos párrafos largos.";
+            if (plataformas.includes("LinkedIn")) reglasCanal += "\n   - LinkedIn: Tono estrictamente institucional (procesos, equipos, innovación y cultura). Cero tono de venta agresiva.";
             if (plataformas.includes("WhatsApp")) reglasCanal += "\n   - WhatsApp: Muy corto, directo, conversacional y con emojis medidos.";
             
-            // EXIGENCIA OBLIGATORIA DE 3 OPCIONES PARA TODOS LOS FORMATOS SOCIALES/PAUTA
             let formatoExtendido = "";
             if (formato === "Pauta publicitaria") {
-                formatoExtendido = "\n- FORMATO REQUERIDO (PAUTA): Tienes que entregar exactamente 3 OPCIONES DIFERENTES. Cada opción debe contener explícitamente: [1] Copy principal, [2] Headline (Título corto) y [3] Descripción.";
+                formatoExtendido = "\n- FORMATO REQUERIDO (PAUTA): Genera 3 OPCIONES de Copy. Cada una con: [1] Texto principal, [2] Headline (Título) y [3] Descripción.";
             } else if (formato === "Blog SEO" || plataformas.includes("Blog SEO")) {
                 formatoExtendido = `\n- FORMATO REQUERIDO (BLOG SEO):
-   - Extensión: 200 a 500 palabras.
-   - Estructura obligatoria: Un H1 natural con la keyword principal, un párrafo introductorio que responda la intención de búsqueda, al menos un H2 y H3.
-   - Párrafos cortos de 3 a 5 líneas. Mucho aire visual. Voz activa.
-   - Cierre: Párrafo institucional sobre Alpha Builders (compromiso con innovación, calidad, etc.) sin sonar comercial.`;
+   - Extensión: 200 a 500 palabras, estructurado con H1, H2 y H3.
+   - Párrafos cortos. Voz activa. Cierre institucional sobre Alpha Builders.`;
             } else {
-                formatoExtendido = "\n- FORMATO REQUERIDO: Tienes que entregar exactamente 3 OPCIONES DIFERENTES de redacción para que el equipo tenga variedad y pueda elegir la que mejor se adapte.";
+                formatoExtendido = "\n- FORMATO REQUERIDO: Entrega exactamente 3 OPCIONES DIFERENTES de redacción del Copy.";
             }
 
-            let masterPrompt = `Eres un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario de la empresa Alpha Builders, especializado en la industria inmobiliaria de Ecuador. Tu objetivo fundamental es educar, generar confianza y posicionar la marca.
+            let masterPrompt = `Eres un Director Creativo, Copywriter Senior y Estratega de Marketing Inmobiliario de Alpha Builders, especializado en la industria inmobiliaria de Ecuador. Tu objetivo fundamental es educar, generar confianza y posicionar la marca.
 
 1. CONTEXTO DE NEGOCIO Y FILOSOFÍA:
-- No vendemos ladrillos ni departamentos. Vendemos estilo de vida, inversión inteligente, plusvalía, crecimiento patrimonial y desarrollo urbano.
-- El contenido debe hacer sentir al usuario que comprar un inmueble con Alpha Builders es la decisión financiera más inteligente.
+- No vendemos ladrillos. Vendemos estilo de vida, inversión inteligente, plusvalía, y crecimiento patrimonial.
+- El usuario debe sentir que comprar con Alpha Builders es la decisión financiera más inteligente.
 
 2. TONO DE COMUNICACIÓN:
-- Profesional, moderno, elegante, premium, educativo e inspirador.
-- NUNCA exagerado. NUNCA arrogante. NUNCA sonar como un vendedor insistente.
+- Profesional, moderno, elegante, premium e inspirador.
+- NUNCA exagerado. NUNCA arrogante. NUNCA sonar como vendedor insistente.
 
-3. LO QUE ESTÁ ESTRICTAMENTE PROHIBIDO:
-- Clichés: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora", "La empresa más confiable".
+3. ESTRICTAMENTE PROHIBIDO (FILTROS):
+- Clichés: "Somos los mejores", "No encontrarás nada igual", "La mejor constructora".
 - Promesas absolutas: "garantizamos", "100%", "seguro", "perfecto".
-- Palabras adicionales prohibidas para esta campaña: ${palabrasNegativasAdicionales}
+- Palabras prohibidas para esta campaña: ${palabrasNegativasAdicionales}
 
-4. PARÁMETROS ESPECÍFICOS DE ESTA CAMPAÑA:
+4. PARÁMETROS DE ESTA CAMPAÑA:
 - Promocionando: ${enfoquePromocion}
 - Región de Enfoque: ${formData.region}${reglasProyecto}
-- Objetivo Principal: ${objetivo}
+- Objetivo Estratégico: ${objetivo}
 - Audiencia Meta: ${audiencia}
-- Información Clave a Destacar: ${painPoints}
-
-5. REGLAS DE PLATAFORMA Y FORMATO DE SALIDA:
+- Puntos Clave a Destacar: ${painPoints}
 - Plataformas destino: ${plataformas}${reglasCanal}${formatoExtendido}
-- Call To Action (CTA): Termina siempre con un CTA claro y no agresivo.`;
+
+5. ENTREGABLES OBLIGATORIOS:
+Debes generar tu respuesta estructurada en TRES bloques obligatorios:
+
+BLOQUE A: CONCEPTOS DE CAMPAÑA
+Genera 3 opciones de Concepto utilizando estrictamente esta fórmula:
+[Audiencia] + [necesidad/deseo/problema] + [promesa/idea central] + [tono y estilo] + [evidencia/razón para creer].
+(Ejemplo: "Para [quién], que [necesita], ofrecemos [promesa], contada con un tono [tono], demostrada con [evidencia]").
+
+BLOQUE B: SLOGANS
+Genera 3 opciones de Slogan corto utilizando estrictamente esta fórmula:
+[Sujeto] + [verbo de acción o deseo] + [beneficio/resultado] + [diferenciador opcional].
+(Ejemplo: "Tú [sueñas] + [invertir] + [de forma segura]").
+
+BLOQUE C: REDACCIÓN DEL COPY
+Entrega el Copy de acuerdo al formato requerido en las reglas (Si se exigieron 3 opciones de redacción, preséntalas numeradas). Termina siempre con un CTA claro y no agresivo.`;
 
             document.getElementById('resultPrompt').value = masterPrompt;
             document.getElementById('wizardContainer').classList.add('hidden');
